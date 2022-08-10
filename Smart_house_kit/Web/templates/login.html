@@ -1,0 +1,71 @@
+{% extends "noheaderfrm.html" %}
+{% block title %}로그인{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+        <div>
+        <a href="home.html">
+            <h1>DIAMOND</h1>
+        </a>
+        </div>
+        </header>
+        <div class="login">
+            <form id="frmlogin" name="frmlogin" autocomplete="off" action="" method="post">
+                <div>
+                    <div>
+                        <input type="text" id="id" placeholder="아이디" maxlength="10">
+                    </div>
+                    <div>
+                        <input type="password" id="pw" placeholder="비밀번호" maxlength="20">
+                    </div>
+                    <div>
+                        <div>
+                            <label>
+                                <input type="checkbox" value="keepLogin">로그인 상태 유지
+                            </label>
+                        </div>
+                        <div>
+                            <a href="">IP보안</a>
+                            <span>
+                                <input type="checkbox" value="off" id="switch">
+                                <label for="switch">
+                                    <span class="blind">on</span>
+                                </label>
+                            </span>
+                        </div>
+                        <div>
+                            <button type="submit" id="login_btn">
+                                <span class="login_btn">로그인</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <di>
+            <ul>
+                <li><a href="">비밀번호 찾기</a></li>
+                <li><a href="">아이디 찾기</a></li>
+                <li><a href="signup.html">회원가입</a></li>
+            </ul>
+        </di>
+        
+        <div>
+            <ul>
+                <li onclick="kakaoLogin();">
+                  <a href="javascript:void(0)">
+                      <span>카카오 로그인</span>
+                  </a>
+                </li>
+                <li>
+                    <!-- 아래와같이 아이디를 꼭 써준다. -->
+                    <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+                        <span>네이버 로그인</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./JS/login.js"></script>
+    {% endblock %}

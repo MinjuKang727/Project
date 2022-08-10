@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIAMOND|글쓰기</title>
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/cotent.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrap">
+        <section class="sub-content">
+			<ul>
+                <li>
+                    <a href="main.html">홈</a>
+                    <li>
+                        <a href=""></a>
+                        <li>글쓰기</li>
+                    </li>
+                </li>
+            </ul>
+			<form name="my" method="post" enctype="multipart/form-data" action="contenttWritePro.do" onsubmit="return formCheck();">
+			<table class="table">
+				<tr class="table-top">
+					<th>제목</th>
+					<td><input type="text" name="pname" class="intxt" id="pname"></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea rows="10" cols="50" style="resize:none;">
+                    </textarea></td>
+				</tr>
+				<tr>
+					<th>게시자</th>
+					<td><input type="text" name="writer"  class="intxt" id="writer"></td>
+				</tr>
+				<tr>
+					<th>첨부</th>
+					<td>
+                        <input type="button" value="첨부" onclick="addFile()">
+                        <input type="file" name="uploadfile">
+                    </td>
+				</tr>
+			</table>
+			<div class="btn-wrap">
+				<input type="submit" value="저장">
+				<input type="reset" value="다시쓰기">
+			</div>
+		</form>
+		</section>
+    </div>
+</body>
+</html>

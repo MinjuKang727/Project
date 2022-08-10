@@ -1,0 +1,74 @@
+{% extends "noheaderfrm.html" %}
+{% block title %}회원가입{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+        <h1>회원 가입</h1>
+        <p>안녕하세요. 다이아몬드팀입니다.<br>
+        저희 팀의 홈페이지 오픈에 따라 회원가입을 하시면 더욱 많은 서비스를 이용하실 수 있습니다.<br>
+        고객 최우선의 체계적인 사육장 관리 시스템을 활용한 최고의 서비스를 회원님께 제공하겠습니다.</p>
+    <div class="table">
+    <form action="ex01.제목태그.html">
+        <table>
+            <tr class="step">
+                <th colspan="2">회원 정보 입력  <span>*</span> 필수 입력 항목</th>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right"><label for="name">이름<span>*</span></label></td>
+                <td><input type="text" id="name" nam="name" maxlength="10" placeholder="이름"></td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right"><label for="id">아이디<span>*</span></label></td>
+                <td><input type="text" id="id" name="id" minlength="6" maxlength="12" placeholder="아이디(6~12자 이내, 영문 숫자 사용 가능)"></td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right"><label for="pw">비밀번호<span>*</span></label></td>
+                <td><input type="password" id="pw1" name="pw1" minlength="8" maxlength="20" placeholder="비밀번호(8자 이상, 문자/숫자/기호  중 2종류 조합 구성)"></td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right"><label for="pw2">비밀번호 확인<span>*</span></label></td>
+                <td><input type="password" id="pw2" name="pw2" minlength="8" maxlength="20" placeholder="비밀번호 확인"></td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right"><label for="tel">연락처<span>*</span></label></td>
+                <td>010-<input type="text" id="tel1" name="tel1" maxlength="4">-<input type="text" id="tel2" name="tel" maxlength="4"></td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right"><label for="emailID">이메일</label></td>
+                <td><input type="email" id="emailID" name="emailid" placeholder="이메일">@
+                <select id="emailAddress" name="emailaddress">
+                    <option value="" disabled selected>E-Mail 선택</option>
+                    <option value="naver.com" id="naver.com">naver.com</option>
+                    <option value="hanmail.net" id="hanmail.net">hanmail.net</option>
+                    <option value="gmail.com" id="gmail.com">gmail.com</option>
+                    <option value="nate.com" id="nate.com">nate.com</option>
+                    <option value="directly" id="textEmail">직접 입력하기</option>
+                    <input type="button" value="인증" onclick="sendToEmail()"><br>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="mailck">메일 인증</label></td>
+                <td>
+                    <input type="text" placeholder="인증 번호" id="mailck"><input type="button" value="확인" onclick="ckEmail()">
+                </td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right">생일</td>
+                <td><input type="date" name="birthday"></td>
+            </tr>
+            <tr class="tr_style">
+                <td class="align_right">취미</td>
+                <td><label><input type="checkbox" value="snail" name="pet">달팽이</label><label><input type="checkbox" value="hamster" name="pet">햄스터</label><label><input type="checkbox" value="lizard" name="pet">도마뱀</label></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                <input type="reset" value="이전 페이지로">
+                <input type="submit" value="회원 가입">
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    {% endblock %}
