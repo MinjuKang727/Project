@@ -1,0 +1,77 @@
+{% extends "frm_body.html" %}
+{% block title %}팀 소개{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+{% include 'left_nav_intro' ignore missing%}
+<div class="content">
+    <h1  class="contnet_title">팀 소개</h1>
+<div>
+    <span>
+        안녕하세요.<br>
+        다이아몬드팀은 광주 인공지능 사관학교 AI모델링Track 사물지능을<br>
+        배우고 있는 학생들로 구성된 프로젝트 팀입니다.<br>
+    </span>
+</div>
+<div>
+    <h1>구성원</h1>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <img src="./img/hen.jpg" title="암닭">
+                </td>
+                <td>
+                    <h1>강민주[팀장]</h1>
+                    <span>
+                        병아리가 커서 암탉이 되었다.<br>
+                        동물과 자연, 프로그래밍을 사랑한 닭~♥<br>
+                        길러본 동물 : 병아리, 금붕어, 강아지, 햄스터, 고양이, 달팽이
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="#" title="">
+                </td>
+                <td>
+                    <h1>신인수[부팀장]</h1>
+                    <span>
+                        길러본 동물 : 
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="#" title="">
+                </td>
+                <td>
+                    <h1>박인선[팀원]</h1>
+                    <span>
+                        길러본 동물 : 
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="#" title="">
+                </td>
+                <td>
+                    <h1>양현석[팀원]</h1>
+                    <span>
+                        길러본 동물 : 
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <h1>다이아몬드의 신념</h1>
+    다이아몬드처럼 굳세고 강하게 프로젝트를 끝까지 완수하자.<br>
+    다이아몬드의 아름다움처럼 우리의 프로젝트도 빛나리라.
+</div>
+</div>
+{% endblock %}

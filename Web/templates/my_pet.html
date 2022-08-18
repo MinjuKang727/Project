@@ -1,0 +1,19 @@
+{% extends "frm_body.html" %}
+{% block title %}마이페이지{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+{% include 'left_nav_mypage' ignore missing%}
+        <div class="content">
+            <h1 class="contnet_title">애완동물 목록</h1>
+        <div>
+            <img src="" title="">
+            <div>
+                <span class="div_name">애완동물이름</span><br>
+                <span class="div_type">달팽이</span>
+                <span class="div_age">나이</span>
+            </div>
+        </div>
+{% endblock %}

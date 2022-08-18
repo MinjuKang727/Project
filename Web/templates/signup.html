@@ -1,0 +1,100 @@
+{% extends "frm_body.html" %}
+{% block title %}회원가입{% endblock %}
+{% block src %}
+<link rel="stylesheet" type="text/css" href="static/signup.css"/>
+<script src="static/signup.js"></script>
+{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+    <h1> <img src="static/img/footprint.png" class="icon circle"> 회원 가입</h1>
+    <br>
+    <p>  안녕하세요. 다이아몬드팀입니다.(∩^o^)⊃━◈<br>
+      저희 팀의 홈페이지 오픈에 따라 회원가입을 하시면 더욱 많은 서비스를 이용하실 수 있습니다.<br>
+      고객 최우선의 체계적인 사육장 관리 시스템을 활용한 최고의 서비스를 회원님께 제공하겠습니다.</p>
+    <br>
+    <div class="table">
+    <form method="post">
+        {{form.csrf_token}}
+        <table>
+            <tr class="step">
+                <th colspan="2">회원 정보 입력  <span>*</span> 필수 입력 항목</th>
+            </tr>
+            <tr class="tr_style">
+                <th class="align_right">{{form.mname.label("이름")}}<span class="red">*</span></th>
+                <td>{{form.mname(class="form-control", placeholder="이름")}}
+                    <!-- <input type="text" id="name" nam="name" maxlength="10" placeholder="이름"> -->
+                </td>
+            </tr>
+            <tr class="tr_style">
+                <th class="align_right">{{form.mid.label("아이디")}}<span class="red">*</span></th>
+                <td>
+                    {{form.mid(id="form-control", placeholder="아이디")}}
+                    <!-- <input type="text" id="id" name="id" minlength="6" maxlength="12" placeholder="아이디">  <input type="button" value="중복확인" onclick="ck_id()">
+                    <br><span>아이디(6~12자 이내, 영문 숫자 사용 가능)</span> -->
+                </td>
+            </tr>
+            <tr class="tr_style">
+                <th class="align_right">{{form.mpw.label("비밀번호")}}<span class="red">*</span></th>
+                <td>
+                    {{form.mpw(class="form-control", placeholder="비밀번호")}}
+                    <!-- <input type="password" id="pw1" name="pw1" minlength="8" maxlength="20" placeholder="비밀번호">
+                    <br><span>비밀번호(8자 이상, 문자/숫자/기호  중 2종류 조합 구성)</span> -->
+                </td>
+            </tr>
+            
+            <tr class="tr_style">
+                <th class="align_right">{{form.mpw2.label("비밀번호")}}<span class="red">*</span></th>
+                <td> {{form.mpw2(class="form-control", placeholder="비밀번호 확인")}}
+                    <!-- <input type="password" id="pw2" name="pw2" minlength="8" maxlength="20" placeholder="비밀번호 확인"> -->
+                </td>
+            </tr>
+            <tr class="tr_style">
+                <th class="align_right"><label for="tel">연락처<span>*</span></label></th>
+                <td>
+                    010-<input type="text" id="tel1" name="tel1" maxlength="4">-<input type="text" id="tel2" name="tel" maxlength="4">
+                    <input type="button" value="인증" onclick="sendToEmail()"><br>
+                </td>
+            </tr>
+            <tr>
+                <th><label for="telck">인증</label></th>
+                <td>
+                    <input type="text" placeholder="인증 번호" id="telck" maxlength="20">  <input type="button" value="확인" onclick="ckTel()">
+                </td>
+            </tr>
+            <tr class="tr_style">
+                <th class="align_right"><label for="emailID">이메일</label></th>
+                <td><input type="email" id="emailID" name="emailid" placeholder="이메일">@
+                <select id="emailAddress" name="emailaddress">
+                    <option value="" disabled selected>E-Mail 선택</option>
+                    <option value="naver.com" id="naver.com">naver.com</option>
+                    <option value="hanmail.net" id="hanmail.net">hanmail.net</option>
+                    <option value="gmail.com" id="gmail.com">gmail.com</option>
+                    <option value="nate.com" id="nate.com">nate.com</option>
+                    <option value="selfWrite" id="textEmail" onselect="selfWrite()">직접 입력하기</option>
+                </select>
+                </td>
+            </tr>
+            <!-- <tr class="tr_style">
+                <th class="align_right">취미</th>
+                <td><label><input type="checkbox" value="snail" name="pet">달팽이</label><label><input type="checkbox" value="hamster" name="pet">햄스터</label><label><input type="checkbox" value="lizard" name="pet">도마뱀</label></td>
+            </tr> -->
+            <tr>
+                <th colspan="2">약관 동의</th>
+            </tr>
+            <tr> 
+                <td colspan="2">
+                    <p class="small underbar red">약관을 클릭하여 읽어보시고 동의를 클릭해 주세요.</p>
+                    <input type="radio" name="term1" value="y" readonly><a href=javacscript:term1()>약관 동의 항목1</a><br>
+                    <input type="radio" name="term2" value="y" readonly><a href=javacscript:term2()>약관 동의 항목2</a>
+                </td>
+            </tr>
+        </table>
+        <div align="center">
+            <input type="reset" value="다시 입력">
+            {{ form.submit('회원가입') }}
+        </div>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "frm_body.html" %}
+{% block title %}글쓰기{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<section class="sub-content">
+	<div> <a href="/">홈</a> > <a href="">상위 카테고리</a> > <a href="#">글쓰기</a>
+	<form name="my" method="post" enctype="multipart/form-data" action="contenttWritePro.do" onsubmit="return formCheck();">
+	<table class="table">
+		<tr class="table-top">
+			<th>제목</th>
+			<td><input type="text" name="pname" class="intxt" id="pname"></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea rows="10" cols="50" style="resize:none;">
+			</textarea></td>
+		</tr>
+		<tr>
+			<th>게시자</th>
+			<td><input type="text" name="writer"  class="intxt" id="writer"></td>
+		</tr>
+		<tr>
+			<th>첨부</th>
+			<td>
+				<input type="button" value="첨부" onclick="addFile()">
+				<input type="file" name="uploadfile">
+			</td>
+		</tr>
+	</table>
+	<div class="btn-wrap">
+		<input type="submit" value="저장">
+		<input type="reset" value="다시쓰기">
+	</div>
+</form>
+</section>
+{% endblock %}

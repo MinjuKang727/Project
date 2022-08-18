@@ -1,0 +1,13 @@
+접속 : Alt + F10
+현재 쿼리 실행 Ctrl + Enter, F9
+Commit : F11
+RollBack : F12
+자동 정렬 : Ctrl + F7
+쿼리 히스토리 창 : F8
+일반 행 주석 : Ctrl + /
+범위 주석 : Alt + Shift + C
+행 잘라내기 : Ctrl + X
+확장된 붙여넣기(클립보드) : Ctrl + Shift + V
+파일 출력하기 : Ctrl + P
+대소문자 변경(명령어 >> 칼럼 및 테이블명 등 >> 맨 앞글자) : Alt + '
+게획 설명 : F10
