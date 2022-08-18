@@ -1,0 +1,22 @@
+{% extends "frm_body.html" %}
+{% block title %}오시는 길{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+{% include 'left_nav_intro' ignore missing%}
+        <div class="content">
+            <h1 class="contnet_title">오시는 길</h1>
+        <div>
+            <h3><a href="https://gj-aischool.or.kr/">광주인공지능사관학교</a></h3>
+            <span class="bold">ADDRESS</span><br>
+            <span>광주 동구 제봉로 92 (대성학원 1~3층, 동구청 정류장 앞) (우)61465</span><br>
+            <span>(post)61465, 1st~3rd floor, 92, Jebong-ro, Dong-gu, Gwangju, Republic of Korea</span><br>
+            <span>월(Mon)~금(Fri) 09:00 ~ 18:00</span><br>
+            <span>전화번호(Tel) : 070-4167-9913</span>
+
+            <div id="map"></div>
+        </div>
+    </div>
+{% endblock %}

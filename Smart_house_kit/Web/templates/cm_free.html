@@ -1,0 +1,52 @@
+{% extends "frm_body.html" %}
+{% block title %}자유 게시판{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+{% include 'left_nav_community' ignore missing%}
+        <div class="content">
+            <h1 class="contnet_title">자유게시판</h1>
+            <span> 자유롭게 글을 쓸 수 있는 게시판입니다.</span>
+            <span>단, 비방글이나 광고글을 관리자에 의해 삭제될 수 있습니다.</span>
+        <div>
+            <div>
+                <select>
+                    <option value="all">전체</option>
+                    <option value="title">제목</option>
+                    <option value="writer">작성자</option>
+                    <option value="content">내용</option>   
+                </select>
+                <input type="text" minlength="2" maxlength="20" placeholder="검색어">
+                <input type="button" value="검색" onclick="search()">
+            </div>
+            <div>
+                <a href="">최신순</a>|
+                <a href="">조회순</a>
+                <a href="">추천순</a>
+            </div>
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                    <th>추천수</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <div>
+                <a class="btn" href="contentWrite.html">글쓰기</a>
+            </div>
+        </div>
+{% endblock %}
+{% endblock %}

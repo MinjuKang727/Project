@@ -1,20 +1,22 @@
-{% extends "header.html" %}
+{% extends "frm_body.html" %}
 {% block title %}홈{% endblock %}
 {% block head %}
 {{ super() }}
 {% endblock %}
-{% block content %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<div class="content">
     <div class="bxslider">
-        <div><a href=""><img src="img/coffee1.jpg" title="광고"></a></div>
-        <div><a href=""></a><img src="imag/coffee2.jpg" title="사진"></a></div>
-        <div><a href=""></a><img src="imag/coffee3.jpg" title="이벤트"></a></div>
+        <div><a href=""><img src="" title="광고"></a></div>
+        <div><a href=""></a><img src="" title="사진"></a></div>
+        <div><a href=""></a><img src="" title="이벤트"></a></div>
     </div>
     <div>
         <h3>Best 상품 Top3</h3>
         <ul>
             <li><a href="javascript:bylatest();">최신순</a></li>
             <li><a href="javascript:bypopular();">인기순</a></li>
-            <li><a href="sub12.html">더보기</a></li>
+            <li><a href="/diamond/shop">더보기</a></li>
         </ul>
         <div>
             <img src="" class="div_img" title="">
@@ -30,8 +32,8 @@
         <h3>커뮤니티</h3>
         <ul>
         <li>1/3</li>
-        <li><a href="javascript:before();"><</a></li>
-        <li><a href="javascript:after();">></a></li>
+        <li><a href="javascript:before();">《</a></li>
+        <li><a href="javascript:after();">》</a></li>
         </ul>
         <ul>
         <li><a href=""><span>구분1</span><span>제목1</span></a></li>
@@ -44,8 +46,8 @@
         <h3>내.동.자</h3>
         <ul>
         <li>1/3</li>
-        <li><a href="javascript:before();"><</a></li>
-        <li><a href="javascript:after();">></a></li>
+        <li><a href="javascript:before();">《</a></li>
+        <li><a href="javascript:after();">》</a></li>
         </ul>
         <ul>
         <li><a href=""><span>구분1</span><span>제목1</span></a></li>
@@ -54,4 +56,5 @@
         <li><a href=""><span>구분4</span><span>제목4</span></a></li>
         </ul>   
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
