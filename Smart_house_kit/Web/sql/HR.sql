@@ -7,7 +7,7 @@ insert into member values('m0001', '∞≠πŒ¡÷', 'KkoKko', 'manager1234','0108733866
 
 select * from member;
 
-ALTER TABLE member ADD (mlogin varchar(6));
+ALTER TABLE member ADD (mlogin varchar(10));
 
 update member set mlogin = 'naver' where mno = 'm0001';
 
@@ -24,3 +24,12 @@ ALTER TABLE member ADD (rdate date, udate date);
 ALTER TABLE member MODIFY (rdate NOT NULL, udate not null);
 
 commit;
+
+select mname, mid, mtel, mmail, mlogin, manager from member;
+
+insert into member values('m0002', 'µµµµ', 'dodo', '1234','01012341234','dodo@gmail.com',0,'22/08/15','22/08/15');
+
+SELECT mid, mlogin, manager FROM member where mlogin='diamond' and mid='dodo' and mpw='1234';
+
+select count(*) from member;
+

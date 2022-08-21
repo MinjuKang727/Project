@@ -28,14 +28,24 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link disabled dropdown-toggle" data-bs-toggle="dropdown" href="/mypage" role="button" aria-haspopup="true" aria-expanded="false">마이페이지</a>
+          <a class="nav-link dropdown-toggle mypage" data-bs-toggle="dropdown" href="/mypage" role="button" aria-haspopup="true" aria-expanded="false" title="로그인을 먼저 해주세요.">마이페이지</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/mypage/cage">사육장 정보</a>
-            <a class="dropdown-item" href="/mypage">내 정보</a>
+              {% if session|length == 0 %}
+              <a class="dropdown-item" href="/login">로그인</a>
+              {% else %}
+              <a class="dropdown-item" href="javascript:logout();">로그아웃</a>
+              {% endif %}
+            <div class="dropdown-divider" class="login"></div>
+            <a class="dropdown-item my" href="/mypage/cage">사육장 정보</a>
+            <a class="dropdown-item my" href="/mypage">내 정보</a>
           </div>
         </li>
         <li class="nav-item">
+          {% if session|length == 0 %}
           <a class="nav-link" href="/login">로그인</a>
+          {% else %}
+          <a class="nav-link" href="javascript:logout();">로그아웃</a>
+          {% endif %}
         </li>
       </ul>
       <form class="d-flex">
