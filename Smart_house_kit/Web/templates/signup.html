@@ -1,100 +1,100 @@
 {% extends "frm_body.html" %}
-{% block title %}회원가입{% endblock %}
+{% block title %}회원 가입{% endblock %}
 {% block src %}
-<link rel="stylesheet" type="text/css" href="static/signup.css"/>
 <script src="static/signup.js"></script>    
 {% endblock %}
 {% block head %}
 {{ super() }}
 {% endblock %}
 {% block wrap %}
-    <h1> <img src="static/img/footprint.png" class="icon circle"> 회원 가입</h1>
-    <br>
-    <p>  안녕하세요. 다이아몬드팀입니다.(∩^o^)⊃━◈<br>
-      저희 팀의 홈페이지 오픈에 따라 회원가입을 하시면 더욱 많은 서비스를 이용하실 수 있습니다.<br>
-      고객 최우선의 체계적인 사육장 관리 시스템을 활용한 최고의 서비스를 회원님께 제공하겠습니다.</p>
-    <br>
+<div style="padding-top:5em;">
+    <h1 class="text-success center" style="margin-bottom:2em;"><img src="/static/img/footprint.png">회원 가입<img src="/static/img/footprint.png"></h1>
+        <figure class="text-center">
+            <blockquote class="blockquote">
+            <p class="mb-0">
+            안녕하세요. DIAMOND를 방문해 주셔서 감사합니다.
+            안내에 따라 회원가입을 하시게 되면, 더욱 많은 서비스를 이용하실 수 있습니다.<br>
+            유토피아의 IoT 사육환경 제어 기술로 최고의 서비스를 회원님께 제공하겠습니다.
+            </p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Welcome to <cite title="Source Title">DIAMOND</cite>
+            </figcaption>
+          </figure>
+</div>
     <div class="table">
-    <form method="post">
-        {{form.csrf_token}}
+    <form method="post" action="/signup/result">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="signup_by" id="btnradio1" autocomplete="off" checked="">
+            <label class="btn btn-outline-success" for="signup_by1">휴대폰 인증 가입</label>
+            <input type="radio" class="btn-check" name="signup_by" id="btnradio3" autocomplete="off" checked="">
+            <label class="btn btn-outline-successs" for="signup_by2">이메일 인증 가입</label>
+        </div>
+        <span>입력한 휴대폰 번호로 인증 후, 회원가입이 됩니다.</span>
+        <span>이메일 인증 가입의 경우, 사육장 상태 알람 카톡 서비스는 제공되지 않습니다.</span>
         <table>
-            <tr class="step">
-                <th colspan="2">회원 정보 입력  <span>*</span> 필수 입력 항목</th>
-            </tr>
-            <tr class="tr_style">
-                <th class="align_right">{{form.mname.label("이름")}}<span class="red">*</span></th>
-                <td>{{form.mname(class="form-control", placeholder="이름")}}
-                    <!-- <input type="text" id="name" nam="name" maxlength="10" placeholder="이름"> -->
-                </td>
-            </tr>
-            <tr class="tr_style">
-                <th class="align_right">{{form.mid.label("아이디")}}<span class="red">*</span></th>
+            <tr>
+                <th>이름</th>
                 <td>
-                    {{form.mid(id="form-control", placeholder="아이디")}}
-                    <!-- <input type="text" id="id" name="id" minlength="6" maxlength="12" placeholder="아이디">  <input type="button" value="중복확인" onclick="ck_id()">
-                    <br><span>아이디(6~12자 이내, 영문 숫자 사용 가능)</span> -->
-                </td>
-            </tr>
-            <tr class="tr_style">
-                <th class="align_right">{{form.mpw.label("비밀번호")}}<span class="red">*</span></th>
-                <td>
-                    {{form.mpw(class="form-control", placeholder="비밀번호")}}
-                    <!-- <input type="password" id="pw1" name="pw1" minlength="8" maxlength="20" placeholder="비밀번호">
-                    <br><span>비밀번호(8자 이상, 문자/숫자/기호  중 2종류 조합 구성)</span> -->
-                </td>
-            </tr>
-            
-            <tr class="tr_style">
-                <th class="align_right">{{form.mpw2.label("비밀번호")}}<span class="red">*</span></th>
-                <td> {{form.mpw2(class="form-control", placeholder="비밀번호 확인")}}
-                    <!-- <input type="password" id="pw2" name="pw2" minlength="8" maxlength="20" placeholder="비밀번호 확인"> -->
-                </td>
-            </tr>
-            <tr class="tr_style">
-                <th class="align_right"><label for="tel">연락처<span>*</span></label></th>
-                <td>
-                    010-<input type="text" id="tel1" name="tel1" maxlength="4">-<input type="text" id="tel2" name="tel" maxlength="4">
-                    <input type="button" value="인증" onclick="sendToEmail()"><br>
+                    <label class="form-label mt-4">이름<span class="red">*</span></label>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="이름">
+                        <label for="floatingInput">이름</label>
+                    </div>
                 </td>
             </tr>
             <tr>
-                <th><label for="telck">인증</label></th>
+                <th>휴대폰번호</th>
                 <td>
-                    <input type="text" placeholder="인증 번호" id="telck" maxlength="20">  <input type="button" value="확인" onclick="ckTel()">
+                    <label class="form-label mt-4">휴대폰 번호<span class="red">*</span></label>
+                    <div class="form-floating mb-3">
+                        <select name="tel1">
+                            <option value="010" selected>010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                        </select>-
+                    <input type="text" name="tel2" class="form-control" id="floatingInput" maxlength="4" placeholder="0000">-
+                    <input type="text" name="tel3" class="form-control" id="floatingInput" maxlength="4" placeholder="0000">
+                    <button type="button" class="btn btn-secondary">인증</button>
+                    </div>
                 </td>
             </tr>
-            <tr class="tr_style">
-                <th class="align_right"><label for="emailID">이메일</label></th>
-                <td><input type="email" id="emailID" name="emailid" placeholder="이메일">@
-                <select id="emailAddress" name="emailaddress">
-                    <option value="" disabled selected>E-Mail 선택</option>
-                    <option value="naver.com" id="naver.com">naver.com</option>
-                    <option value="hanmail.net" id="hanmail.net">hanmail.net</option>
-                    <option value="gmail.com" id="gmail.com">gmail.com</option>
-                    <option value="nate.com" id="nate.com">nate.com</option>
-                    <option value="selfWrite" id="textEmail" onselect="selfWrite()">직접 입력하기</option>
-                </select>
-                </td>
-            </tr>
-            <!-- <tr class="tr_style">
-                <th class="align_right">취미</th>
-                <td><label><input type="checkbox" value="snail" name="pet">달팽이</label><label><input type="checkbox" value="hamster" name="pet">햄스터</label><label><input type="checkbox" value="lizard" name="pet">도마뱀</label></td>
-            </tr> -->
             <tr>
-                <th colspan="2">약관 동의</th>
+                <td colspan="2">
+                    <input type="checkbox" value="all" name="term">전체 동의<span>선택사항 포함</span>
+                </td>
             </tr>
             <tr> 
                 <td colspan="2">
-                    <p class="small underbar red">약관을 클릭하여 읽어보시고 동의를 클릭해 주세요.</p>
-                    <input type="radio" name="term1" value="y" readonly><a href=javacscript:term1()>약관 동의 항목1</a><br>
-                    <input type="radio" name="term2" value="y" readonly><a href=javacscript:term2()>약관 동의 항목2</a>
+                    <input type="checkbox" value="use" name="term">이용 약관<span>(필수)</span>
+                    <a href="">전문보기></a>
+                </td>
+            </tr>
+            <tr> 
+                <td colspan="2">
+                    <input type="checkbox" value="pay_service" name="term">유료 서비스<span>(필수)</span>
+                    <a href="">전문보기></a>
+                </td>
+            </tr>
+            <tr> 
+                <td colspan="2">
+                    <input type="checkbox" value="private_info" name="term">개인정보 수집 및 이용<span>(필수)</span>
+                    <a href="">전문보기></a>
+                </td>
+            </tr>
+            <tr> 
+                <td colspan="2">
+                    <input type="checkbox" value="event" name="term">이벤트, 서비스 안내 수신<span>(선택)</span>
+                    <a href="">전문보기></a>
                 </td>
             </tr>
         </table>
-        <div align="center">
-            <input type="reset" value="다시 입력">
-            {{ form.submit('회원가입') }}
-        </div>
+        <input type="submit" value="회원가입">
     </form>
     </div>
 {% endblock %}

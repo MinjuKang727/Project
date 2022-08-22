@@ -1,24 +1,27 @@
 {% extends "frm_body.html" %}
 {% block title %}로그인{% endblock %}
 {% block head %}
-{{ super() }}
+{% block src %}
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
+{% endblock %}
+{{ super() }}
 {% endblock %}
 {% block wrap %}
 <div style="margin:3em auto; width: 20em; text-align: center;">
-    <a href="/" style="text-decoration: none;"><h1><img src="static/img/diamond.png">DIAMOND<img src="static/img/diamond.png"></h1></a>
+    <a href="/" style="text-decoration: none;"><h1><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1></a>
           <div class="form-group" style="margin-top:3em; background-color: rgb(255, 250, 246); padding: 1em; border-radius: 0.3em; border:solid 0.5px bisque;">
-            <form action="/login/result" method="post" name="login" target="_self" autocomplete="off">
+            <form action="/login/result" method="post" name="login" autocomplete="off">
                 <input type="hidden" value="diamond" name="mlogin">
                 <legend class="form-label mt-4"><h2>로그인</h2></legend>
                 <div class="form-floating mb-3" style="text-align:left;">
-                <input type="text" class="form-control" id="floatingID" maxlength="20" placeholder="아이디" name="mid">
+                <input type="text" class="form-control" id="floatingID" maxlength="20" placeholder="아이디" name="mid" autocomplete="off">
                 <label for="floatingID">아이디</label>
                 </div>
                 <div class="form-floating" style="text-align:left;">
-                <input type="password" class="form-control" id="floatingPassword" maxlength="20" placeholder="비밀번호" name="mpw">
+                <input type="password" class="form-control" id="floatingPassword" maxlength="20" placeholder="비밀번호" name="mpw" autocomplete="off">
                 <label for="floatingPassword">비밀번호</label>
                 </div>
                 <input type="submit" class="btn btn btn-success" style="margin-top:1.5em; margin-bottom: 1.5em; width:100%; height:3.5em;" value="로그인">
@@ -36,57 +39,9 @@
   
     <a href="javascript:kakaoLogin();" style="text-decoration:none;">
         <div style="width:87%; background-color: rgb(254,229,0); color:rgb(24,22,0); display : flex; align-items : center; border-radius: 0.3em; margin: 0 auto;">
-            <img src="static/img/kakao_icon.png" style="margin:1em;"><div style="font-weight:bold; width: 100%;"><span style="display:inline-block; float:left;">&nbsp|</span><span style="text-align:center;">카카오 로그인</span></div>
+            <img src="/static/img/kakao_icon.png" style="margin:1em;"><div style="font-weight:bold; width: 100%;"><span style="display:inline-block; float:left;">&nbsp|</span><span style="text-align:center;">카카오 로그인</span></div>
         </div>
     </a>
 </div>
 </div>
-{% endblock %}
-{% block script %}
-<!-- 네이버 로그인 -->
-<script type="text/javascript"> 
-    //버튼 생성
-    var naver_id_login = new naver_id_login("58VENhxe4RuqFKX9sZ5e", "http://192.168.30.69:5020/login/result");
-    var state = naver_id_login.getUniqState();
-    naver_id_login.setButton("green", 3,60);  //버튼 색, 버튼 타입, 버튼 높이
-    naver_id_login.setDomain("http://192.168.30.69:5020/login/result");
-    naver_id_login.setState(state);
-    naver_id_login.setPopup(); // 팝업을 통한 연동 처리 여부
-    naver_id_login.init_naver_id_login();
-    
-    //콜백 처리
-	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-	// function naverSignInCallback() {
-	// 	// naver_id_login.getProfileData('프로필항목명');
-    //     alert(naver_id_login.getProfileData('name'));
-	// 	alert(naver_id_login.getProfileData('email'));
-	// 	alert(naver_id_login.getProfileData('mobile'));
-	// }
-</script>
-<!-- 카카오 로그인 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-    window.Kakao.init("926f082d2c2f0d7497d2efa1d0a0f752");
-
-    function kakaoLogin() {
-        window.Kakao.Auth.login({
-            scope:'account_email, talk_message',
-            success: function(authoObj) {
-                console.log(authObj); // 로그인 완료
-                window.Kako.API.request({  //로그인 정보 가져오기
-                    url: '/v2/user/me',
-                    success: res => {
-                        const kakao_account = res.kakao_account;
-                        console.log(kakao_account);
-                    }
-                });
-            }});
-        }
-
-    $(document).ready(() => {
-        alertInfo();
-        checkForm();
-        
-    })
-  </script>
 {% endblock %}

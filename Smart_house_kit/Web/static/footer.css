@@ -24,6 +24,11 @@ section {
   text-align: left;
   font: bold 16px sans-serif;
   padding: 55px 50px;
+  clear : both;
+  display: block;
+  position: absolute;  
+  bottom: 0;
+  position: fixed;
 }
 
 .footer-distributed .footer-left,

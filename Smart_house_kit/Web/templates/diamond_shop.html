@@ -1,0 +1,42 @@
+{% extends "frm_body.html" %}
+{% block title %}쇼핑몰{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+{% include 'left_nav_intro' ignore missing%}
+        <div class="content">
+            <h1 class="contnet_title">쇼핑몰</h1>
+        <div>
+            <div>
+                <img src="" title="">
+                <div>
+                    <span class="div_name">인기상품 1</span>
+                    <span class="price_origin">25,000원</span>
+                    <span class="price_discount">20,000원</span>
+                    <span class="div_option">할인중</span>
+                </div>
+            </div>
+            <div>
+                <img src="" title="">
+                <div>
+                    <span class="div_name">인기상품 1</span>
+                    <span class="price_origin">25,000원</span>
+                    <span class="price_discount">20,000원</span>
+                    <span class="div_option">할인중</span>
+                </div>
+            </div>
+            <div>
+                <img src="" title="">
+                <div>
+                    <span class="div_name">인기상품 1</span>
+                    <span class="price_origin">25,000원</span>
+                    <span class="price_discount">20,000원</span>
+                    <span class="div_option">할인중</span>
+                </div>
+            </div>
+
+    </div>
+    </div>
+{% endblock %}

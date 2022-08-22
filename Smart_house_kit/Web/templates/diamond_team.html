@@ -1,0 +1,89 @@
+{% extends "frm_body.html" %}
+{% block title %}팀 소개{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/diamond/team">DIAMOND</a></li>
+    <li class="breadcrumb-item">팀 소개</li>
+</ol>
+<div class="content">
+    <div style="padding-top:5em;">
+        <h1 class="text-success center" style="margin-bottom:2em;"><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1>
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                  <p class="mb-0">다이아몬드처럼 굳세고 강하게 프로젝트를 끝까지 완수하자.<br>
+                    다이아몬드의 아름다움처럼 우리의 프로젝트도 빛나리라.</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                  Spirit of <cite title="Source Title">DIAMOND</cite>
+                </figcaption>
+              </figure>
+    </div>
+    <div class="intro_member">
+        <div class="card mb-3 member">
+        <h3 class="card-header">강민주</h3>
+        <div class="card-body">
+            <h5 class="card-title">다이아몬드팀 팀장</h5>
+            <h6 class="card-subtitle text-muted">웹페이지 제작 담당</h6>
+        </div>
+        <div class="intro_img"><img src="/static/img/minju_icon.png" alt="여왕 개구리 캐릭터"></div>
+        <div class="card-body">
+            <p class="card-text">자연과 프로그래밍을 사랑하는 여왕 개구리</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>길러 본 동물</b> : 병아리, 금붕어, 강아지, 햄스터, 고양이, 달팽이</li>
+        </ul>
+        </div>
+    
+        <div class="card mb-3 member">
+        <h3 class="card-header">신인수</h3>
+        <div class="card-body">
+            <h5 class="card-title">다이아몬드팀 부팀장</h5>
+            <h6 class="card-subtitle text-muted">키트 제작 담당</h6>
+        </div>
+        <div class="intro_img"><img src="/static/img/insu_icon.png" alt="E이고 싶은 I인 도마뱀 캐릭터"></div>
+        <div class="card-body">
+            <p class="card-text">E이고 싶은 I인 도마뱀</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>길러 본 동물</b> : 없음(길러본 동물이라곤 동생밖에 없음...👩🏻‍❤️‍👨🏻)</li>
+        </ul>
+        </div>
+    
+        <div class="card mb-3 member">
+        <h3 class="card-header">박인선</h3>
+        <div class="card-body">
+            <h5 class="card-title">다이아몬드팀 팀원</h5>
+            <h6 class="card-subtitle text-muted">데이터 분석 담당</h6>
+        </div>
+        <div class="intro_img"><img src="/static/img/inseon_icon.png" alt="조용히 생각하는 부엉이 캐릭터"></div>
+        <div class="card-body">
+            <p class="card-text">부엉이처럼 조용히 생각하는걸 좋아합니다.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>길러 본 동물</b> : 햄스터, 병아리</li>
+        </ul>
+        </div>
+    
+        <div class="card mb-3 member">
+        <h3 class="card-header">양현석</h3>
+        <div class="card-body">
+            <h5 class="card-title">다이아몬드팀 팀원</h5>
+            <h6 class="card-subtitle text-muted">키트 제작 담당</h6>
+        </div>
+        <div class="intro_img"><img src="/static/img/hyeonseok_icon.png" alt="호기심이 가득한 햄스터 캐릭터"></div>
+        <div class="card-body">
+            <p class="card-text">호기심이 가득한 햄스터</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>길러 본 동물</b> : 기니피그, 햄스터, 토끼, 도마뱀, 병아리, 참새, 개, 거북이
+                사슴벌레</li>
+        </ul>
+        </div>
+                
+    </div>
+</div>
+{% endblock %}

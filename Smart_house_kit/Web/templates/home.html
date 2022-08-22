@@ -7,20 +7,19 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
 {% endblock %}
 {{ super() }}
-{% block src %}
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
 <div class="content">
-    <div class="slider">
-        <div><img src="/static/img/lizard1.jpg" title="스마일 게코"></div>
-        <div><img src="/static/img/lizard2.jpg" title="쪼꼬미 도마뱀"></div>
-        <div><img src="/static/img/lizard3.jpg" title="앵그리 게코"></div>
-        <div><img src="/static/img/lizard5.jpg" title="아기 도마뱀"></div>
-        <div><img src="/static/img/lizard6.png" title="아르마딜로 갑옷 도마뱀"></div>
-        <div><img src="/static/img/lizard4.jpg" title="할짝 게코"></div>
-        <!-- <div><a href=""></a><img src="" title="이벤트"></a></div> -->
-    </div>
+        <div class="slider">
+            <div><img src="/static/img/lizard1.jpg" title="스마일 게코"></div>
+            <div><img src="/static/img/lizard2.jpg" title="쪼꼬미 도마뱀"></div>
+            <div><img src="/static/img/lizard3.jpg" title="앵그리 게코"></div>
+            <div><img src="/static/img/lizard5.jpg" title="아기 도마뱀"></div>
+            <div><img src="/static/img/lizard6.png" title="아르마딜로 갑옷 도마뱀"></div>
+            <div><img src="/static/img/lizard4.jpg" title="할짝 게코"></div>
+            <!-- <div><a href=""></a><img src="" title="이벤트"></a></div> -->
+        </div>
     <div>
         <h3>Best 상품 Top3</h3>
         <ul>
@@ -68,10 +67,3 @@
     </div>
 </div>
 {% endblock %}
-<script>
-    $(document).ready( () => {
-        alertInfo();
-        navSet();
-        $('.slider').bxSlider();
-    });
-    </script>
