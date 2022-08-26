@@ -1,100 +1,93 @@
 {% extends "frm_body.html" %}
 {% block title %}회원 가입{% endblock %}
-{% block src %}
-<script src="static/signup.js"></script>    
-{% endblock %}
 {% block head %}
 {{ super() }}
-{% endblock %}
+{% endblock %}  
 {% block wrap %}
-<div style="padding-top:5em;">
-    <h1 class="text-success center" style="margin-bottom:2em;"><img src="/static/img/footprint.png">회원 가입<img src="/static/img/footprint.png"></h1>
-        <figure class="text-center">
-            <blockquote class="blockquote">
-            <p class="mb-0">
-            안녕하세요. DIAMOND를 방문해 주셔서 감사합니다.
-            안내에 따라 회원가입을 하시게 되면, 더욱 많은 서비스를 이용하실 수 있습니다.<br>
-            유토피아의 IoT 사육환경 제어 기술로 최고의 서비스를 회원님께 제공하겠습니다.
-            </p>
-            </blockquote>
+<div class="signup_wrap">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="" onclick="window.close();opener.parent.location.replace('/');">홈</a></li>
+        <li class="breadcrumb-item">회원가입</li>
+    </ol>
+    <div class="title_parent">
+        <div class="first"><img src="/static/img/footprint.png" class="left_right_trans"></div><div class="second"><h2 class="text-success">회원 가입</h2></div><div class="third"><img src="/static/img/footprint.png"></div>
+    </div>
+    <div class="title_info">
+        <figure class="text-center" style="margin-top: 2em;">
             <figcaption class="blockquote-footer">
               Welcome to <cite title="Source Title">DIAMOND</cite>
             </figcaption>
           </figure>
-</div>
-    <div class="table">
-    <form method="post" action="/signup/result">
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="signup_by" id="btnradio1" autocomplete="off" checked="">
-            <label class="btn btn-outline-success" for="signup_by1">휴대폰 인증 가입</label>
-            <input type="radio" class="btn-check" name="signup_by" id="btnradio3" autocomplete="off" checked="">
-            <label class="btn btn-outline-successs" for="signup_by2">이메일 인증 가입</label>
+    </div>
+    <div class="signup_form">
+    <form name="signup" method="post" action="/signup/result">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-bottom:1em;">
+            <input type="radio" class="btn-check" name="signup_by" id="btnradio1" value="mobile" autocomplete="off" checked onchange="javascript:changeInfo('mobile');">
+            <label class="btn btn-outline-success" for="btnradio1">휴대폰 인증 가입</label>
+            <input type="radio" class="btn-check" name="signup_by" id="btnradio3" value="email" autocomplete="off" onchange="javascript:changeInfo('email');">
+            <label class="btn btn-outline-success" for="btnradio3">이메일 인증 가입</label>
         </div>
-        <span>입력한 휴대폰 번호로 인증 후, 회원가입이 됩니다.</span>
-        <span>이메일 인증 가입의 경우, 사육장 상태 알람 카톡 서비스는 제공되지 않습니다.</span>
-        <table>
-            <tr>
-                <th>이름</th>
-                <td>
-                    <label class="form-label mt-4">이름<span class="red">*</span></label>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="이름">
-                        <label for="floatingInput">이름</label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th>휴대폰번호</th>
-                <td>
-                    <label class="form-label mt-4">휴대폰 번호<span class="red">*</span></label>
-                    <div class="form-floating mb-3">
-                        <select name="tel1">
-                            <option value="010" selected>010</option>
-                            <option value="011">011</option>
-                            <option value="016">016</option>
-                            <option value="017">017</option>
-                            <option value="018">018</option>
-                            <option value="019">019</option>
-                            <option value="010">010</option>
-                            <option value="011">011</option>
-                        </select>-
-                    <input type="text" name="tel2" class="form-control" id="floatingInput" maxlength="4" placeholder="0000">-
-                    <input type="text" name="tel3" class="form-control" id="floatingInput" maxlength="4" placeholder="0000">
-                    <button type="button" class="btn btn-secondary">인증</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="checkbox" value="all" name="term">전체 동의<span>선택사항 포함</span>
-                </td>
-            </tr>
-            <tr> 
-                <td colspan="2">
-                    <input type="checkbox" value="use" name="term">이용 약관<span>(필수)</span>
-                    <a href="">전문보기></a>
-                </td>
-            </tr>
-            <tr> 
-                <td colspan="2">
-                    <input type="checkbox" value="pay_service" name="term">유료 서비스<span>(필수)</span>
-                    <a href="">전문보기></a>
-                </td>
-            </tr>
-            <tr> 
-                <td colspan="2">
-                    <input type="checkbox" value="private_info" name="term">개인정보 수집 및 이용<span>(필수)</span>
-                    <a href="">전문보기></a>
-                </td>
-            </tr>
-            <tr> 
-                <td colspan="2">
-                    <input type="checkbox" value="event" name="term">이벤트, 서비스 안내 수신<span>(선택)</span>
-                    <a href="">전문보기></a>
-                </td>
-            </tr>
-        </table>
-        <input type="submit" value="회원가입">
+        <div id="signup_info" class="text-info">휴대폰 번호 본인 인증으로 회원 가입합니다.</div>
+        <div id="signup_input" class="border_top">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="mname" id="mname" maxlength="10" placeholder="이름" >
+                <label for="mname">이름</label>
+                <div class="feedback"></div>
+            </div>
+            <div class="form-floating input-group mb-3">
+                <input type="text" name="mb_id" class="form-control" id="mb_id" placeholder="아이디" maxlength="12" aria-label="아이디" aria-describedby="button-addon2">
+                <label for="mid">아이디</label>
+                <button class="btn btn-secondary" type="button" onclick="confirm_id()" >중복확인</button>
+                <input type="hidden" name="id_confirm" readonly value="false">
+                <div class="feedback"></div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name="mpw" id="mpw" maxlength="20" autocomplete="off" placeholder="비밀번호">
+                <label for="mpw">비밀번호</label>
+                <div class="feedback"></div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name="mpw_confirm" id="mpw_confirm" autocomplete="off" placeholder="비밀번호 확인">
+                <label for="mpw_confirm" >비밀번호 확인</label>
+                <div class="feedback"></div>
+            </div>
+            <div class="form-floating input-group mb-3">
+                <input type="tel" name="mtel" class="form-control" id="confirm_by" placeholder="휴대폰 번호" aria-label="휴대폰 번호" aria-describedby="button-addon2">
+                <label for="confirm_by">휴대폰 번호</label>
+                <button class="btn btn-secondary" type="button">인증</button>
+                <div class="feedback"></div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" name="token" class="form-control" id="confirm" placeholder="본인 인증" aria-label="본인 인증" aria-describedby="button-addon2">
+                <button class="btn btn-secondary" type="button">확인</button>
+                <input type="hidden" name="self_confirm" readonly value="false">
+                <div class="feedback"></div>
+            </div>
+        </div>
+        <div id="signup_term" class="border_top" id="term">
+            <input type="checkbox" value="all" name="term">전체 동의<span>선택사항 포함</span>
+            <div class="border_top">
+            <div>
+            <input type="checkbox" value="use" name="term">이용 약관<span class="text-success">(필수)</span>
+            <a href="" class="text-muted">전문보기></a>
+            </div>
+            <div>
+            <input type="checkbox" value="pay_service" name="term">유료 서비스<span class="text-success">(필수)</span>
+            <a href="" class="text-muted">전문보기></a>
+            </div>
+            <div>
+            <input type="checkbox" value="private_info" name="term">개인정보 수집 및 이용<span class="text-success">(필수)</span>
+            <a href="" class="text-muted">전문보기></a>
+            </div>
+            <input type="checkbox" value="event" name="term">이벤트, 서비스 안내 수신<span class="text-muted">(선택)</span>
+            <a href="" class="text-muted">전문보기></a><br>
+            </div>
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-lg btn-success" type="button" onclick="">회원 가입</button>
+        </div>
     </form>
     </div>
+    </div>
+{% include 'frm_footer.html' ignore missing%}
 {% endblock %}

@@ -5,7 +5,6 @@
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
-{% include 'left_nav_community' ignore missing%}
 
         <div class="content">
             <h1 class="contnet_title">자유게시판</h1>
@@ -49,5 +48,5 @@
                 <a class="btn" href="contentWrite.html">글쓰기</a>
             </div>
         </div>
-{% endblock %}
+{% include 'frm_footer.html' ignore missing%}
 {% endblock %}

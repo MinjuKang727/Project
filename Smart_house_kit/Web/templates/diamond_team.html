@@ -5,10 +5,12 @@
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
+<div>
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/diamond/team">DIAMOND</a></li>
     <li class="breadcrumb-item">팀 소개</li>
 </ol>
+</div>
 <div class="content">
     <div style="padding-top:5em;">
         <h1 class="text-success center" style="margin-bottom:2em;"><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1>
@@ -86,4 +88,5 @@
                 
     </div>
 </div>
+{% include 'frm_footer.html' ignore missing%}
 {% endblock %}

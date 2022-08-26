@@ -10,8 +10,14 @@
 {{ super() }}
 {% endblock %}
 {% block wrap %}
+<div>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="" onclick="window.close();opener.parent.location.replace('/');">홈</a></li>
+    <li class="breadcrumb-item">로그인</li>
+</ol>
+</div>
 <div style="margin:3em auto; width: 20em; text-align: center;">
-    <a href="/" style="text-decoration: none;"><h1><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1></a>
+    <a href="/" style="text-decoration: none;"><h1 class="text-success"><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1></a>
           <div class="form-group" style="margin-top:3em; background-color: rgb(255, 250, 246); padding: 1em; border-radius: 0.3em; border:solid 0.5px bisque;">
             <form action="/login/result" method="post" name="login" autocomplete="off">
                 <input type="hidden" value="diamond" name="mlogin">
@@ -30,7 +36,7 @@
 <div style="margin-top:0.3em; margin-bottom:3em;">
     <button type="button" class="btn btn-outline-secondary" onclick="location.href='#'">비밀번호 찾기</button>
     <button type="button" class="btn btn-outline-secondary" onclick="location.href='#'">아이디 찾기</button>
-    <button type="button" class="btn btn-outline-info" style="margin-left:2em;" onclick="location.href='/signup'">회원가입</button>
+    <button type="button" class="btn btn-outline-info" style="margin-left:2em;" onclick="location.replace('/signup');">회원가입</button>
 </div>
         
 <div>
@@ -44,4 +50,5 @@
     </a>
 </div>
 </div>
+{% include 'frm_footer.html' ignore missing%}
 {% endblock %}
