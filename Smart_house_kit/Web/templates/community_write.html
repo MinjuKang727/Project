@@ -1,0 +1,36 @@
+{% extends "frm_body.html" %}
+{% block title %}글쓰기{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+<div>
+   <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="/">홈</a></li>
+       <li class="breadcrumb-item"><a href="/community/free">자유 게시판</a></li>
+   </ol>
+ </div>
+ <div class="content">
+     <div class="title_wrap">
+       <div class="title_parent">
+         <div class="first"><img src="../static/img/footprint.png" class="left_right_trans"></div><div class="second"><h2 class="text-success">글쓰기</h2></div><div class="third"><img src="../static/img/footprint.png"></div>
+       </div>
+     </div>
+     <form name="content_form" action="/content/write/result" method="post" autocomplete="off">
+      <input type="hidden" name="commu_type" value="F">
+      <input type="hidden" name="mb_id" value="{{session['user_id']}}">
+     <table>
+      <tr>
+        <th>제목</th>
+        <td><input type="text" name='title'></td>
+      </tr>
+      <tr>
+        <th>내용</th>
+        <td><textarea name="content"></textarea></td>
+      </tr>
+     </table>
+     <input type="submit" value="등록">
+    </form>
+  </div> 
+{% include 'frm_footer.html' ignore missing%}
+{% endblock %}

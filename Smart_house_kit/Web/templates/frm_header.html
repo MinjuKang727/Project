@@ -28,10 +28,10 @@
     <ul class="navbar-nav ms-md-auto">
     {% if session|length == 0 %}
     <li class="nav-item">
-    <a class="nav-link" href="/login" rel="noopener" target="_blank">로그인</a>
+    <a class="nav-link" href="javascript:window.close();window.open('/login');" rel="noopener">로그인</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link"  href="/signup" rel="noopener" target="_blank">회원가입</a>
+    <a class="nav-link"  href="javascript:windwo.close();window.open('/signup');" rel="noopener">회원가입</a>
     {% else %}
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle mypage" data-bs-toggle="dropdown" href="/mypage/cage" role="button" aria-haspopup="true" aria-expanded="false">{{session['user_id']}}</span>님 반갑습니다.</a>

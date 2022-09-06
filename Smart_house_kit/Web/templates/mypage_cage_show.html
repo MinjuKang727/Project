@@ -1,0 +1,84 @@
+{% extends "frm_body.html" %}
+{% block title %}{{cage_info['cage_name']}}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing %}
+<div>
+   <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="/">홈</a></li>
+       <li class="breadcrumb-item"><a href="/mypage/cage">사육장 정보</a></li>
+       <li class="breadcrumb-item">사육장: {{cage_info['cage_name']}}</li>
+   </ol>
+</div>
+
+<div class="cage_info">
+<div class="card mb-3">
+    <h3 class="card-header">{{cage_info['cage_name']}}</h3>
+    <div class="card-body">
+    <!-- <div>
+      <h5 class="card-title" style="float:left;">사육장 알람</h5>
+    </div> -->
+      <img class="webcam_btn" src="/static/img/webcam.png" title="Live PetCam" onclick="location.href='#'">
+      <div id="condition_bar">
+        {% if 'DHT11_TEMP' in keys and 'DHT11_HUMI' in keys %}
+            {% if cage_info['kit']['DHT11_TEMP'][1] == '정상' and cage_info['kit']['DHT11_HUMI'][1] == '정상' %}
+                <img src="/static/img/safe.png" alt="정상" title="정상" class="cage_condition">
+            {% elif cage_info['kit']['DHT11_TEMP'][1] == '저온' %}
+                <img src="/static/img/freezing.png" alt="저온" title="{{cage_info['kit']['DHT11_TEMP'][2]}}" class="cage_condition">
+            {% elif cage_info['kit']['DHT11_TEMP'][1] == '고온' %}
+                <img src="/static/img/hot.png" alt="고온" title="{{cage_info['kit']['DHT11_TEMP'][2]}}" class="cage_condition">
+            {% elif cage_info['kit']['DHT11_HUMI'][1] == '건조' %}
+                <img src="/static/img/humi_dry.png" alt="건조" title="{{cage_info['kit']['DHT11_HUMI'][2]}}" class="cage_condition">
+            {% elif cage_info['kit']['DHT11_HUMI'][1] == '과습' %}
+                <img src="/static/img/humi_over.png" alt="과습" title="{{cage_info['kit']['DHT11_HUMI'][2]}}" class="cage_condition">
+            {% endif %}
+        {% endif %}
+        {% if 'HEATING_PAD' in keys %}
+            <img src="/static/img/heating_pad_on.png" alt="온열패드" title="온열패드" class="cage_condition">
+        {% endif %}
+        {% if 'HUMIDIFIER' in keys %}
+            <img src="/static/img/humidifier.png" alt="가습기" title="가습기" class="cage_condition">
+        {% endif %}
+        {% if 'COOLING_PAN8*8' in keys or 'COOLING_PAN12*12' in keys %}
+            <img src="../static/img/cooling_pan.png" alt="냉각팬" title="냉각팬" class="cage_condition">
+        {% endif %}
+    </div>
+    </div>
+    <div class="intro_img"><img src="/static/img/{{today}}_{{session['user_id']}}_{{ cage_info['cage_seq'] }}.png" style="width:100%; height:auto;" alt="사육장 온,습도 그래프"></div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item kit_info">
+        <ul>
+            {% if 'DHT11_TEMP' in keys and 'DHT11_HUMI' in keys %}
+                <li>온도 : {{ cage_info['kit']['DHT11_TEMP'] }}℃&nbsp&nbsp&nbsp&nbsp</li>
+                <li>습도 : {{ cage_info['kit']['DHT11_HUMI'] }}%&nbsp&nbsp&nbsp&nbsp</li>
+            {% endif %}
+            {% if 'PAD_TEMP' in keys %}
+                <li>온열 패드 : {{ cage_info['kit']['PAD_TEMP'] }}℃&nbsp&nbsp&nbsp&nbsp</li>
+            {% endif %}
+            {% if 'HUMIDIFIER' in keys %}
+                <li>가습기 : {{ cage_info['kit']['HUMIDIFIER'] }}</li>
+            {% endif %}
+            {% if 'COOLING_PAN8*8' in keys %}
+                <li>냉각팬(8*8) : {{ cage_info['kit']['COOLING_PAN8*8'] }}</li>
+            {% endif %}
+            {% if 'COOLING_PAN12*12' in keys %}
+                <li>냉각팬(12*12) : {{ cage_info['kit']['COOLING_PAN12*12'] }}</li>
+            {% endif %}
+        </ul>
+      </li>
+    </ul>
+        <ul class="list-group list-group-flush">
+    {% for pet in cage_info['pet'] %}
+        <li class="list-group-item">
+            <b>{{pet[0]}}</b><br>
+            <span>{{pet[1]}}</span>
+        </li>
+    {% endfor %}
+        </ul>
+        </div>
+</div>
+</div>
+{% include 'frm_footer.html' ignore missing %}
+{% endblock %}

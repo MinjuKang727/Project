@@ -1,0 +1,47 @@
+{% extends "frm_body.html" %}
+{% block title %}자유 게시판{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<div>
+   <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="/community/free">게시판</a></li>
+       <li class="breadcrumb-item"><a href="/community/free">자유게시판</a></li>
+   </ol>
+</div>
+<div class="content">
+   <div class="content_view">
+   <form action="comunity/update/result" method="post" name="content_update" autocomplete="off">
+   <input type="hidden" name="commu_seq" value="{{ content_info[6] }}">
+      <table class="content_table">
+      <thead>
+      <tr>
+         <th class="lead center"><h3>제목</h3></th>
+         <td class="lead center">
+            <input type="text" name="commu_title" class="commu_input" value="{{content_info[0]}}" maxlength="20">
+         </td>
+         <th class="lead center"><h3>작성자</h3></th>
+         <td class="lead center">
+            <input type="text" name="mb_id" class="commu_input" value="{{content_info[2]}}" disabled>
+         </td>
+      </tr>
+      </thead>
+      <tr class="content_row">
+         <td class="lead"colspan="6">
+         <textarea class="content_textarea" row="20" col="500" onchange="content_length_ck();">
+            {{content_info[1]}}
+         </textarea></td>
+      </tr>
+   </table>
+   {% if session['user_id'] == content_info[2] %}
+   <div class="commu_write_btn">
+      <input type="submit" class="btn btn-success" value="글 등록">
+  </div>
+</form>
+</div>
+  {% endif %}
+</div>
+{% include 'frm_footer.html' ignore missing%}
+{% endblock %}

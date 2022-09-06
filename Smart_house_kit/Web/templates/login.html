@@ -12,15 +12,15 @@
 {% block wrap %}
 <div>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="" onclick="window.close();opener.parent.location.replace('/');">홈</a></li>
+    <li class="breadcrumb-item"><a href="javascript:window.close();window.open('/');">홈</a></li>
     <li class="breadcrumb-item">로그인</li>
 </ol>
 </div>
-<div style="margin:3em auto; width: 20em; text-align: center;">
-    <a href="/" style="text-decoration: none;"><h1 class="text-success"><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1></a>
-          <div class="form-group" style="margin-top:3em; background-color: rgb(255, 250, 246); padding: 1em; border-radius: 0.3em; border:solid 0.5px bisque;">
+<div class="login_div">
+    <a href="javascript:window.close();window.open('/');"><h1 class="text-success"><img src="/static/img/diamond.png">DIAMOND<img src="/static/img/diamond.png"></h1></a>
+          <div class="form-group login_form">
             <form action="/login/result" method="post" name="login" autocomplete="off">
-                <input type="hidden" value="diamond" name="mlogin">
+                <input type="hidden" value="D" name="mlogin">
                 <legend class="form-label mt-4"><h2>로그인</h2></legend>
                 <div class="form-floating mb-3" style="text-align:left;">
                 <input type="text" class="form-control" id="floatingID" maxlength="20" placeholder="아이디" name="mid" autocomplete="off">
@@ -39,15 +39,12 @@
     <button type="button" class="btn btn-outline-info" style="margin-left:2em;" onclick="location.replace('/signup');">회원가입</button>
 </div>
         
-<div>
+<div class="simpleLogin_div">
     <div id="naver_id_login" style="margin:0.5em auto; width:100%"></div>
   
-  
-    <a href="javascript:kakaoLogin();" style="text-decoration:none;">
-        <div style="width:87%; background-color: rgb(254,229,0); color:rgb(24,22,0); display : flex; align-items : center; border-radius: 0.3em; margin: 0 auto;">
-            <img src="/static/img/kakao_icon.png" style="margin:1em;"><div style="font-weight:bold; width: 100%;"><span style="display:inline-block; float:left;">&nbsp|</span><span style="text-align:center;">카카오 로그인</span></div>
-        </div>
-    </a>
+    <div class="kakao_btn" onclick="kakaoLogin()">
+        <img src="/static/img/kakao_icon.png" style="margin:1em;"><div style="font-weight:bold; width: 100%;"><span style="display:inline-block; float:left;">&nbsp|</span><span style="text-align:center;">카카오 로그인</span></div>
+    </div>
 </div>
 </div>
 {% include 'frm_footer.html' ignore missing%}

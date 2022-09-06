@@ -1,0 +1,46 @@
+{% extends "frm_body.html" %}
+{% block title %}자유 게시판{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<div>
+   <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="/community/free">게시판</a></li>
+       <li class="breadcrumb-item"><a href="/community/free">자유게시판</a></li>
+   </ol>
+ </div>
+<div class="content">
+   <div class="content_view">
+   <table class="content_table">
+      <thead>
+      <tr>
+         <th class="lead center"><b>제목</b></th>
+         <td class="lead center">{{content_info[0]}}</td>
+         <th class="lead center"><b>작성자</b></th>
+         <td class="lead center">{{content_info[2]}}</td>
+         <th class="lead center"><b>작성일</b></th>
+         <td class="lead center">{{content_info[3]}}</td>
+      </tr>
+      <tr>
+         <td colspan="2"></th>
+         <th class="lead center"><b>조회수</b></th>
+         <td class="lead center">{{content_info[5]}}</td>
+         <th class="lead center"><b>추천수</b></th>
+         <td class="lead center">{{content_info[4]}}</td>
+      </tr>
+      </thead>
+      <tr class="content_row">
+         <td class="lead"colspan="6">{{content_info[1]}}</td>
+      </tr>
+   </table>
+   {% if session['user_id'] == content_info[2] %}
+   <div class="commu_write_btn">
+      <a class="btn btn-success" href="javascript:window.close();window.open('/community/update/c{{content_info[6]}}');">글 수정</a>
+  </div>
+</div>
+  {% endif %}
+</div>
+{% include 'frm_footer.html' ignore missing%}
+{% endblock %}

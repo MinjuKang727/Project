@@ -5,48 +5,86 @@
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
-
-        <div class="content">
-            <h1 class="contnet_title">자유게시판</h1>
-            <span> 자유롭게 글을 쓸 수 있는 게시판입니다.</span>
-            <span>단, 비방글이나 광고글을 관리자에 의해 삭제될 수 있습니다.</span>
-        <div>
-            <div>
-                <select>
-                    <option value="all">전체</option>
-                    <option value="title">제목</option>
-                    <option value="writer">작성자</option>
-                    <option value="content">내용</option>   
+<div>
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/community/free">게시판</a></li>
+      <li class="breadcrumb-item">자유게시판</li>
+  </ol>
+</div>
+  <div class="content">
+      <div>
+          <h1 class="text-success center"><img src="/static/img/diamond.png">자유 게시판<img src="/static/img/diamond.png"></h1>
+              <figure class="text-center">
+                  <blockquote class="blockquote">
+                    <p class="mb-0">자유롭게 글을 쓸 수 있는 게시판입니다.<br>
+                     <span class="text-warning">단, 비방글이나 광고글을 관리자에 의해 삭제될 수 있습니다.</span></p>
+                  </blockquote>
+                </figure>
+      </div>
+      <div class="commu_list">
+      <div>
+            <div class="commu_search">
+                <select name="search_selector">
+                    <option value="a" selected>전체</option>
+                    <option value="t">제목</option>
+                    <option value="w">작성자</option>
+                    <option value="c">내용</option>   
                 </select>
-                <input type="text" minlength="2" maxlength="20" placeholder="검색어">
+                {% if search == '' %}
+                <input type="text" minlength="2" value="" name="search_keyword" maxlength="20" onkeypress="if (event.keyCode == 13){search()}" placeholder="검색어">
+                {% else %}
+                <input type="text" minlength="2" value="{{ search }}" name="search_keyword" maxlength="20" onkeypress="if (event.keyCode == 13){search()}" placeholder="검색어">
+                {% endif %}
                 <input type="button" value="검색" onclick="search()">
             </div>
-            <div>
-                <a href="">최신순</a>|
-                <a href="">조회순</a>
-                <a href="">추천순</a>
+            <div class="commu_sort">
+              <ul>
+                <li>
+                  <a class="text-primary" href="/community/free/latest/n1">최신순</a><span class="text-primary">|</span>
+                </li>
+                <li>
+                  <a class="text-primary" href="/community/free/views/n1">조회순</a><span class="text-primary">|</span>
+                </li>
+                <li>
+                  <a class="text-primary" href="/community/free/likes/n1">추천순</a>
+                </li>
+              </ul>
             </div>
-            <table>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
-                    <th>추천수</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <div>
-                <a class="btn" href="contentWrite.html">글쓰기</a>
+          </div>
+            <div class="commu_content">
+                <table class="table table-hover">
+                    <thead style="text-align:center;">
+                      <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                        <th scope="col">조회수</th>
+                        <th scope="col">추천수</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for content in content_list %}
+                      <tr class="table-active" style="cursor:pointer;"onclick="location.href='/community/c{{ content[0] }}'">
+                        <td scope="row">{{ content[1] }}</td>
+                        <td class="title_hover">{{ content[2] }}</td>
+                        <td>{{ content[3] }}</td>
+                        <td>{{ content[4] }}</td>
+                        <td>{{ content[5] }}</td>
+                        <td>{{ content[6] }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            
+            <div class="commu_write_btn">
+                <a class="btn btn-success" href="/content/write/free">글쓰기</a>
             </div>
+          </div>
         </div>
+        <div class="commu_page">
+        {% include 'paging.html' ignore missing %}
+        </div>
+      </div>
 {% include 'frm_footer.html' ignore missing%}
 {% endblock %}
