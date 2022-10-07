@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>오늘은 무슨 공부해?</title>
+   <link rel="stylesheet" href="../static/main.css">
+   <script src="../static/main.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+   <div class="wrap_body">
+      <div class="start">
+         <Button id="study" class="start">시작</Button>
+      </div>
+      <div id="on">
+         <h1 id="now"></h1>
+         <h5 id="total_study">총 공부 시간 : 00시간 00분 00초</h5>
+         <h5 id="total_words">총 입력 키워드 : 0</h5>
+         <form action="http://127.0.0.1:5500/study" method="post">
+            <input type="text" id="keyword" placeholder="공부 키워드를 입력하세요.">
+            <input type="submit" value="입력">
+         </form>
+         <Button id="breaktime">일시정지</Button>
+         <Button id="end">종료</Button>
+      </div>
+   </div>   
+</body>
+</html>
