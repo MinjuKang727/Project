@@ -1,0 +1,23 @@
+html, body{margin: 0; padding : 0;}
+
+div.start{
+   margin: 0 auto;
+   padding: 10rem 30rem;
+}
+
+#study{
+   width: 30rem;
+   height: 10rem;
+   background-color: red;
+   color: white;
+   font-size: 6rem;
+   font-weight: bolder;
+   border: none;
+   border-radius: 10rem;
+}
+#on {
+   visibility: hidden;
+   width: 100rem;
+   height: 100rem;
+   margin: 0 auto;
+}
