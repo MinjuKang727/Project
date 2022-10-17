@@ -1,5 +1,5 @@
-# Smart House Kit (for raptile and small animal)
-다이아몬드 팀, <b>강민주</b> 팀장의 프로젝트 저장소 입니다.
+# Project
+백엔드 신입 개발자 <b>강민주</b>님의 프로젝트 저장소입니다.
 
 <br><br>
 <h1>Stack</h1>
@@ -25,7 +25,9 @@
 <br>
 
 
-<br><br><br>
+
+<br><br>
+<h1>[ How to use Gitbash ]</h1><br>
 [clone 주소]<br>
 git remote add origin https://gwangju-ai-gitlab.elice.io/ai_iot/diamond/smart-farm-kit.git
 
