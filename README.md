@@ -40,7 +40,7 @@ cd C:/Users/AI/GJAIschool/Project/Smart_house_kit
 <br>
 1. 처음 한번만 입력할 아이디와 메일 주소<br>
 `$ git config --global user.name gitLab아이디`<br>
-`AI@DESKTOP-B76SA23 MINGW64 ~`<br>
+`AI@DESKTOP-B76SA23 MINGW64 ~`<br> 
 `$ git config --global user.email gitLab이메일주소`<br>
 <br>
 `AI@DESKTOP-B76SA23 MINGW64 ~`<br>
