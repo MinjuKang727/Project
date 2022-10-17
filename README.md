@@ -30,7 +30,7 @@
 git remote add origin https://gwangju-ai-gitlab.elice.io/ai_iot/diamond/smart-farm-kit.git
 
 [로컬 저장소]<br>
-cd C:/Users/AI/GJAIschool/Smart_house_kit
+cd C:/Users/AI/GJAIschool/Project/Smart_house_kit
 
 <br><br>
 <h1>GitLab CML 작성 가이드</h1>
