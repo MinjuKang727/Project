@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Camera API</title>
+        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    </head>
+ 
+    <body>
+      <div>
+        <video class="user-video"></video>
+      </div>
+        <input type="button" value="녹화 시작" onclick="VideoCaptureStart();">
+        <input type="button" value="녹화 종료" onclick="VideoCaptureEnd();">
+      <script>
+let videoTag = document.querySelector(".user-video");
+let videoMediaStream = null;
+
+navigator.mediaDevices.getUserMedia({ // constraints
+    audio: false,
+    video: {
+      width: 360,
+      height: 240,
+    },
+  }).then(function (mediaStream) {
+    videoTag.srcObject = mediaStream;
+    videoTag.onloadedmetadata = function() {
+    videoTag.play();
+      };
+    videoMediaStream = mediaStream;
+  });
+
+let videoRecorder = null;
+let recordedVideoURL = null;
+let videoBlob = null;
+
+let VideoCaptureStart = () => {
+  if(navigator.mediaDevices.getUserMedia) {
+    console.log("video capture start");
+    
+    let videoData = [];
+  
+    // 1) MediaStream을 매개변수로 MediaRecorder 생성자를 호출
+    // webm만?????
+    videoRecorder = new MediaRecorder(videoMediaStream, {
+      mimeType: "video/webm; codecs=vp9"
+    });
+  
+    // 2) 전달받는 데이터를 처리하는 이벤트 핸들러 등록
+    videoRecorder.ondataavailable = event => {
+      if(event.data?.size > 0){
+        videoData.push(event.data);
+      }
+    }
+    
+    // 3) 녹화 중지 이벤트 핸들러 등록
+    videoRecorder.onstop = () => {
+    videoBlob = new Blob(videoData, {type: "video/webm"});
+    recordedVideoURL = window.URL.createObjectURL(videoBlob);
+      
+      // 이벤트 실행 시에 서버로 파일 POST
+    sendAvi(videoBlob);
+    console.log("video capture end");
+    }
+    
+    // 4) 녹화 시작
+    videoRecorder.start();
+  }
+};
+
+let VideoCaptureEnd = () => {
+  if(videoRecorder){
+    // 5) 녹화 중지
+    videoRecorder.stop();
+    videoRecorder = null;
+
+    // our final videoBlob
+    sendAvi(videoBlob);
+    // -> 이벤트의 비동기로 인해 순서가 꼬이므로 이벤트 발생 시에 선언한다
+  }
+};
+
+let sendAvi = blob => {
+  if (blob == null) return;
+  
+let filename = new Date().toString() + ".avi";
+let file = new File([blob], filename);
+
+let fd = new FormData();
+fd.append("fname", filename);
+fd.append("file", file);
+
+$.ajax({
+  url: "http://192.168.70.91/5028",
+  type: "POST",
+  contentType: false,
+  processData: false,
+  data: fd,
+  success: function (data, textStatus) {
+    if (data != null) {
+      setUserResponse(data);
+      send(data);
+    }
+  },
+  error: function (errorMessage) {
+  setUserResponse("");
+  console.log("Error" + errorMessage);
+  },}).done(function (data) {
+  console.log(data);
+});
+}
+        </script>
+    </body>
+</html>
