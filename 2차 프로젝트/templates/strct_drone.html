@@ -1,0 +1,72 @@
+{% extends "frm_body.html" %}
+
+{% block title %}{%if strct_drone =='structure' %}
+구조물
+{% elif strct_drone =='drone' %}드론{% endif %}{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<div>
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item white"><a href="/">홈</a></li>
+      <li class="breadcrumb-item white"><a href="#">{%if strct_drone =='structure' %}
+        구조물
+        {% elif strct_drone =='drone' %}드론{% endif %}</a></li>
+  </ol>
+</div>
+<div class="content">
+    <div class="title_wrap">
+      <div class="title_parent">
+        <div class="first">{%if strct_drone =='structure' %}
+          <img src="../static/img/construction.png" class="left_right_trans"></div><div class="second"><h2 class="text-primary">구조물 정보</h2></div><div class="third"><img src="../static/img/construction.png">
+          {% elif strct_drone =='drone' %}<img src="../static/img/drone2.png" class="left_right_trans"></div><div class="second"><h2 class="text-primary">드론 정보</h2></div><div class="third"><img src="../static/img/drone2.png">{% endif %}</div>
+      </div>
+      <div class="title_info">
+        <h5>빠르고 정확한 진단을 위한 드론 계측 시스템</h5>
+        <span class="text-muted">-Sprit of <b><i>Intelli Drone</i></b></span>
+      </div>
+    </div>
+  <div class="mypage_cage">
+    {%if strct_drone =='structure' %}
+      {%if strct_list|length == 0 %}
+      등록된 구조물이 존재하지 않습니다.
+      {% else %}
+      {% for strct in strct_list %}
+        <div class="card mb-3 cage" onclick="location.href='/ID/structure/s{{loop.index}}'">
+          <h3 class="card-header">{{strct[1]}}</h3>
+          <div class="intro_img"><img src="../static/img/structure01.png" alt="건축물01 사진"></div>
+          <div class="card-body">
+            <h5 class="card-title">{{strct[2]}}</h5>
+            <h6 class="card-subtitle text-muted">{{strct[3]}}</h6>
+          </div>
+          <div class="card-footer text-muted">
+            구조물 정보 :
+          </div>
+        </div>
+      {% endfor %}
+      {% endif %}
+    {% elif strct_drone =='drone' %}
+      {%if drone_list|length == 0 %}
+        등록된 드론이 존재하지 않습니다.
+      {% else %}
+        {% for drone in drone_list %}
+          <div class="card mb-3 cage" onclick="location.href='/ID/drone/d{{loop.index}}'">
+            <h3 class="card-header">{{drone[1]}}</h3>
+            <div class="intro_img"><img src="../static/img/drone01.png" alt="드론01 사진"></div>
+            <div class="card-body">
+              <h5 class="card-title">{{drone[2]}}</h5>
+              <h6 class="card-subtitle text-muted">{{drone[3]}}</h6>
+            </div>
+            <div class="card-footer text-muted">
+              드론 정보 :
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% include 'frm_footer.html' ignore missing%}
+{% endblock %}
