@@ -1,0 +1,42 @@
+{% extends "frm_body.html" %}
+{% block title %}로봇 위치 정보{% endblock %}
+{% block head %}
+{% block src %}
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=926f082d2c2f0d7497d2efa1d0a0f752"></script>
+<script src="../static/contact.js"></script>
+{% endblock%}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<div>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/robot">물류 로봇</a></li>
+    <li class="breadcrumb-item"><a href="#">위치 정보</a></li>
+</ol>
+</div>
+<div class="content">
+        <div class="card border-success mb-3 map">
+            <div class="card-header">오시는 길</div>
+            <div class="card-body">
+              <h4 class="card-title" style="color:rgb(13,71,153);"><img src='/static/img/gjaischool_icon.png' alt='광주인공지능사관학교 마크'><b>광주인공지능사관학교</b></h4>
+            </div>
+            <div class="card-body" id="map" style="width:100%; height:350px;"></div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-0">광주광역시 동구 제봉로92 (대성학원 1~3층, 동구청 정류장 앞)</h6>
+            </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b style="color:rgb(13,71,153);">버스정류장</b><br>
+                    <span>동구청, 문화전당역 정류장</span>
+                    
+                </li>
+                <li class="list-group-item">
+                    <b style="color:rgb(13,71,153);">지하철역</b><br>
+                    <span>국립아시아문화전당역(1호선, 1,2번출구)</span>
+                </li>
+            </ul>
+            </div>
+    </div>
+</div>
+{% include 'frm_footer.html' ignore missing%}
+{% endblock %}

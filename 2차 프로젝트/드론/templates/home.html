@@ -1,0 +1,21 @@
+{% extends "frm_body.html" %}
+{% block title %}홈{% endblock %}
+{% block head %}
+{% block src %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+{% endblock %}
+{{ super() }}
+{% endblock %}
+{% block wrap %}
+{% include 'frm_header.html' ignore missing%}
+<div class="home_wrap">
+  <div class="home_info_wrap" >
+  <h1 class="home_info" style="margin-top: 1em;">
+  'Inelli Drone'<br><br>자율주행 물류 로봇 통합 관리 시스템</h1>
+  <h3 class="lead text-muted home_info" style="margin-bottom: 1em;">운행 로봇의 정확한 위치 파악 및 통합 관리가 가능합니다.</h3>
+</div>
+</div>
+{% include 'frm_footer.html' ignore missing%}
+{% endblock %}

@@ -1,0 +1,50 @@
+<div id="header">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container">
+    <a class="navbar-brand" href="/"><img src="/static/img/robot1.png"> 봇통령 <img src="/static/img/robot1.png"></a>
+    <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Home
+          <span class="visually-hidden">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/BTR/warehouse">창고</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/BTR/robot">로봇</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/BTR/employee">직원</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-md-auto">
+    {% if session|length == 0 %}
+    <li class="nav-item">
+    <a class="nav-link" href="javascript:window.close();window.open('/login');" rel="noopener">로그인</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link"  href="javascript:windwo.close();window.open('/signup');" rel="noopener">회원가입</a>
+    {% else %}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle mypage" data-bs-toggle="dropdown" href="/mypage/cage" role="button" aria-haspopup="true" aria-expanded="false">{{session['user_id']}}</span>님 반갑습니다.</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item my" href="/mypage">내 정보</a>
+      </div>
+    </li>
+    <li>
+      <a class="nav-link" href="javascript:logout();"><span class="badge rounded-pill bg-light"></span>로그아웃</span></a>
+    </li>
+    {% endif %}
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+</nav>
+</div>
