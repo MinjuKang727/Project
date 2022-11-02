@@ -16,7 +16,10 @@ section {
   margin-bottom: 0px;
   padding-bottom: 20em;
 }
-
+.footer_wrap{
+  display:block;
+  clear:both;
+}
 .footer-distributed{
   background: #121e2b;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);

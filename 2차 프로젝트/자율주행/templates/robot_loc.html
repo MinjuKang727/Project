@@ -11,32 +11,38 @@
 {% include 'frm_header.html' ignore missing%}
 <div>
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/robot">물류 로봇</a></li>
-    <li class="breadcrumb-item"><a href="#">위치 정보</a></li>
+    <li class="breadcrumb-item"><a href="/robot">로봇</a></li>
+    <li class="breadcrumb-item"><a href="#">{{r_name}}</a></li>
 </ol>
 </div>
 <div class="content">
-        <div class="card border-success mb-3 map">
-            <div class="card-header">오시는 길</div>
-            <div class="card-body">
-              <h4 class="card-title" style="color:rgb(13,71,153);"><img src='/static/img/gjaischool_icon.png' alt='광주인공지능사관학교 마크'><b>광주인공지능사관학교</b></h4>
-            </div>
-            <div class="card-body" id="map" style="width:100%; height:350px;"></div>
-            <div class="card-body">
-                <h6 class="card-subtitle mb-0">광주광역시 동구 제봉로92 (대성학원 1~3층, 동구청 정류장 앞)</h6>
-            </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b style="color:rgb(13,71,153);">버스정류장</b><br>
-                    <span>동구청, 문화전당역 정류장</span>
-                    
-                </li>
-                <li class="list-group-item">
-                    <b style="color:rgb(13,71,153);">지하철역</b><br>
-                    <span>국립아시아문화전당역(1호선, 1,2번출구)</span>
-                </li>
-            </ul>
-            </div>
+    <div class="w_map">
+        {% if r_state is defined %}
+            <img src="/static/img/warehouse0{{r_state[2]}}.png">
+        {% else %}
+            <p> 오른쪽 로봇 리스트 중 하나를 클릭해 주세요.</p>
+        {% endif %}
+    </div>
+    <div class="wr_list">
+        <h3>물류 로봇 리스트-{{r_name}}</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>상태</th>
+                    <th>위치</th>
+                </tr>
+            </thead>
+            {% for robot in r_list %}
+            <tr>
+                <td>{{r_state[0]}}</td>
+                <td>{{r_state[1]}}</td>
+                <td>창고{{r_state[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
+
 {% include 'frm_footer.html' ignore missing%}
 {% endblock %}

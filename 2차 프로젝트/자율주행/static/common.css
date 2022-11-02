@@ -86,6 +86,59 @@ a{
 }
 .icon {width:30px; height:30px;}
 
+/* 위치 정보 */
+.loc_info_wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+}
+.w_map{
+    width: 50rem;
+    height: 35rem;
+    flex:auto;
+    flex-grow: 3;
+    margin-bottom: 2rem;
+    overflow: scroll;
+}
+
+.w_map { overflow: overlay; }
+
+.w_map::-webkit-scrollbar {
+    width: 1vw;
+}
+
+.w_map::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 100px;
+}
+
+.w_map > img {
+    width:100%;
+    height: auto;
+    object-fit: contain;
+}
+.wr_list{
+    overflow:scroll;
+    width: 10rem;
+    height: 100%;
+    flex:auto;
+    flex-grow: 1;
+}
+.wr_list { overflow: overlay; }
+
+.wr_list::-webkit-scrollbar {
+    width: 1vw;
+}
+
+.wr_list::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 100px;
+}
+.wr_list > table {
+    border: none;
+}
 .intro_member, .mypage_cage {
     max-width: 100%;
     width : fit-content;
@@ -116,19 +169,21 @@ a{
 .kit_info > li {
     margin-right:2em;
 }
+
 .intro_img{
-    width: 100%;
-    height: fit-content;
-    vertical-align: middle;
-    text-align: center;
-    margin: 0.5em auto;
+    width: 20rem;
+    height: 12rem;
+    margin : 1rem auto;
+    overflow: hidden;
 }
 
 .intro_img > img{
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-    margin : 0.5em auto;
+    max-width: 100%;
+    height: auto;
+    /* width: auto; */
+    /* max-height: 100%; */
+    
+    margin: 0 auto; 
 }
 
 .webcam_btn{
@@ -301,7 +356,7 @@ a{
 }
 .content{
     padding: 3em 3em;
-    margin: 5em auto;
+    margin: 0 auto;
 }
 
 .title_parent{
