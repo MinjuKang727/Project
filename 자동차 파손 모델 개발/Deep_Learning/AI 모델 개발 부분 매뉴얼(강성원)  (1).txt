@@ -1,0 +1,81 @@
+[AI 모델 개발 부분 매뉴얼]
+
+******** 목차 ********
+1. 학습. 배포를 위한 SW 및 HW
+2. 파일 저장 구조
+3. 모델 실행 방법
+4. 연락처
+
+
+
+******** 매뉴얼 ********
+1. 학습. 배포를 위한 SW 및 HW
+
+[SoftWare]
+JupyterNotebook ver6.4.8
+Python3.9.1
+CUDA 11.6
+
+[HardWare]
+인텔 코어 i9-12900H 14core
+GeForce RTX3080Ti
+DDR5 32GB
+
+
+
+------------------------
+2. 파일 저장 구조
+
+1) AI-Hub 차량 파손 이미지 데이터
+   - jpg 형식 이미지 데이터 632,694장
+
+     훈련 데이터
+   data.zip
+   - train
+    - images
+     - *.jpg
+
+     검증 데이터
+     data.zip
+      - valid
+       - images
+        - *.jpg
+
+2) 라벨링 데이터
+
+     훈련 데이터
+     data.zip
+      - train
+       - labels
+        - *.txt
+
+     검증 데이터
+     data.zip
+      - valid
+       - labels
+        - *.txt
+
+
+data.yaml
+train = '{./train.txt 파일 경로}'
+val = '{./val.txt 파일 경로}'
+
+nc = 5
+names = ['None', 'Crushed', 'Scratched', 'Breakage', 'Separated']
+------------------------
+3. 모델 실행 방법
+1) 아래 코드 실행
+!python detect.py --weights '{./best.pt 파일 경로}' --img 416 --conf 0.06 --source "{test_img}"
+
+2) test_img에 파손 인식 시킬 사진 경로 입력
+ - 파손 인식 결과 출력됨
+ - bbox 표시된 이미지, 파손 유형 및 config 표시됨
+
+
+
+
+------------------------
+4. 연락처
+정충원 : 010-4934-1833
+김성민 : 010-2804-2846
+강민주 : 010-8733-8662
