@@ -16,15 +16,15 @@
 </ol>
 </div>
 <div class="content">
-    <div class="w_map">
+    <div class="sf_map">
         {% if r_state is defined %}
-            <img src="/static/img/warehouse0{{r_state[2]}}.png">
+            <img src="/static/img/smartfarm0{{r_state[2]}}.png">
         {% else %}
             <p> 오른쪽 로봇 리스트 중 하나를 클릭해 주세요.</p>
         {% endif %}
     </div>
     <div class="wr_list">
-        <h3>물류 로봇 리스트-{{r_name}}</h3>
+        <h3>스마트팜 로봇 리스트-{{r_name}}</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -37,7 +37,7 @@
             <tr>
                 <td>{{r_state[0]}}</td>
                 <td>{{r_state[1]}}</td>
-                <td>창고{{r_state[2]}}</td>
+                <td>스마트팜{{r_state[2]}}</td>
             </tr>
             {% endfor %}
         </table>
