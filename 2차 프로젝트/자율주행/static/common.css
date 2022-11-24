@@ -28,6 +28,10 @@ body { width: 100%; min-height:100%;  margin:0; padding:0;  }
     text-decoration: underline;
 }
 
+.br-0_2{
+    border-radius:0.2em;
+}
+
 .border_top{
     border-top: solid 1px rgb(222, 222, 222);
 }
@@ -94,7 +98,7 @@ a{
     flex-direction:row;
     flex-wrap: wrap;
 }
-.w_map{
+.sf_map{
     width: 50rem;
     height: 35rem;
     flex:auto;
@@ -103,40 +107,40 @@ a{
     overflow: scroll;
 }
 
-.w_map { overflow: overlay; }
+.sf_map { overflow: overlay; }
 
-.w_map::-webkit-scrollbar {
+.sf_map::-webkit-scrollbar {
     width: 1vw;
 }
 
-.w_map::-webkit-scrollbar-thumb {
+.sf_map::-webkit-scrollbar-thumb {
     background-color: hsla(0, 0%, 42%, 0.49);
     border-radius: 100px;
 }
 
-.w_map > img {
+.sf_map > img {
     width:100%;
     height: auto;
     object-fit: contain;
 }
-.wr_list{
+.sfr_list{
     overflow:scroll;
     width: 10rem;
     height: 100%;
     flex:auto;
     flex-grow: 1;
 }
-.wr_list { overflow: overlay; }
+.sfr_list { overflow: overlay; }
 
-.wr_list::-webkit-scrollbar {
+.sfr_list::-webkit-scrollbar {
     width: 1vw;
 }
 
-.wr_list::-webkit-scrollbar-thumb {
+.sfr_list::-webkit-scrollbar-thumb {
     background-color: hsla(0, 0%, 42%, 0.49);
     border-radius: 100px;
 }
-.wr_list > table {
+.sfr_list > table {
     border: none;
 }
 .intro_member, .mypage_cage {
@@ -334,22 +338,13 @@ a{
 }
 .login_form{
     margin-top:3em; 
-    background-color: rgb(255, 250, 246); 
-    padding: 1em; 
+    background-color: lightgray; 
+    padding: 1.5em; 
     border-radius: 0.3em; 
-    border:solid 0.5px bisque;
+    border:solid 0.5px dimgray;
 }
 
-.kakao_btn{
-    cursor: pointer;
-    width:100%; 
-    background-color: rgb(254,229,0); 
-    color:rgb(24,22,0); 
-    display : flex; 
-    align-items : center; 
-    border-radius: 0.3em; 
-    margin: 0 auto;
-}
+
 /* 회원가입 */
 #signup_info{
     margin:1em auto;
