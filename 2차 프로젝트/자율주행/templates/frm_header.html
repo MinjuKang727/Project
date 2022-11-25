@@ -2,40 +2,22 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
     <div class="container">
-    <a class="navbar-brand" href="/"><img src="/static/img/logo.png"> DCT <img src="/static/img/logo.png"></a>
+    <a class="navbar-brand" href="/">DCT</a>
     <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button">
     <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="/map">Home
+        <a class="nav-link active" href="/map">HOME
           <span class="visually-hidden">(current)</span>
         </a>
       </li>
-      {% if session|lenth != 0 %}
-        <li class="nav-item">
-          <a class="nav-link active" href="/map">지도
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/smartfarm">농장
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/robot">로봇
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/employee">직원
-        </li>
-      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link active" href="/set">관리 및 설정
+      </li>
     </ul>
     <ul class="navbar-nav ms-md-auto">
-      {% if session|length == 0 %}
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:window.close();window.open('/login');" rel="noopener">로그인</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"  href="javascript:window.close();window.open('/signup');" rel="noopener">회원가입</a>
-      {% else %}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle mypage" data-bs-toggle="dropdown" href="/mypage/cage" role="button" aria-haspopup="true" aria-expanded="false">{{session['user_id']}}</span>님 반갑습니다.</a>
         <div class="dropdown-menu">
@@ -45,7 +27,6 @@
     <li>
       <a class="nav-link" href="javascript:logout();"><span class="badge rounded-pill bg-light"></span>로그아웃</span></a>
     </li>
-    {% endif %}
     </li>
     </ul>
     </div>
