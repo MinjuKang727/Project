@@ -2000,9 +2000,9 @@ progress {
 }
 
 .form-control {
-  display: block;
+  flex: auto;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: 1rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -2545,6 +2545,7 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+  height: fit-content;
 }
 .input-group > .form-control,
 .input-group > .form-select,
@@ -2553,6 +2554,7 @@ textarea.form-control-lg {
   flex: 1 1 auto;
   width: 1%;
   min-width: 0;
+  height: fit-content;
 }
 .input-group > .form-control:focus,
 .input-group > .form-select:focus,

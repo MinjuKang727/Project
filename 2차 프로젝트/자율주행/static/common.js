@@ -1,12 +1,6 @@
 let loc = location.href.split('/').slice(3,5);
 // let info = $('input[name=info]').val()
 // console.log(info);
-//뒤로 가기 막기
-// var prePage = document.referrer;
-// console.log(prePage);
-// if(prePage.indexOf('/login') != -1){
-//   window.location.href = '/';
-// }
 
 // top버튼
 let top_btn = () => {
@@ -235,28 +229,6 @@ function logout(){
 
 ////////////회원가입///////////////////
 
-function changeInfo (val) {
-  if(val == "mobile"){
-      $('#signup_info').text("휴대폰 번호 본인 인증으로 회원 가입합니다.");
-      $('#memail>label').text("휴대폰 번호");
-      $("input[name='memail']").attr('type','tel');
-      $("input[name='memail']").attr('placeholder','휴대폰 번호');
-      $("input[name='memail']").attr('name','mphone');
-      $("#memail").attr('id','mphone');
-  }else if (val == "email"){
-      $('#signup_info').text("이메일 본인 인증 인증으로 회원 가입합니다.");
-      $('#mphone>label').text("이메일");
-      $("input[name='mphone']").attr('type','email');
-      $("input[name='mphone']").attr('placeholder','이메일');
-      $("input[name='mphone']").attr('name','memail');
-      $("#mphone").attr('id','memail');
-      swal(
-        '카톡 알람 서비스 안내',
-        '이메일 본인 인증으로 회원 가입 시, \n휴대폰 번호 미기재로 카카오톡 알람 서비스\n(사육장 상태 알람)가 제공되지 않습니다.\n\n카톡 알람 서비스를 원하실 경우, \n회원 가입 후, 내 정보에서 휴대폰 번호 인증이 추가적으로\n필요합니다.',
-        'warning',
-      ) 
-  }
-}
 // function ckInput(val){
 //   if (val == 'name'){
 //     let regname = r'^[가-힣]{1,10}$';
@@ -272,6 +244,7 @@ function changeInfo (val) {
 //     }
 //   }
 // }
+
 function ck_id(input_id){
   var regid = '^^[a-zA-Z]\w{6,12}$/';
   console.log(regid.test(input_id));
