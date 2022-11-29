@@ -15,7 +15,7 @@
     <script src="/static/bootstrap.bundle.min.js"></script>
     <script src="/static/prism.js"></script>
     <script src="/static/sweetalert.min.js"></script>
-    <script src="/static/custom.js"></script>
+    <!-- <script src="/static/custom.js"></script> -->
 
     {% block src %}{% endblock %}
     {% endblock %}
@@ -30,9 +30,9 @@
     </div>
     <script>
     $(document).ready(() => {
-      alertInfo();
-      navSet();
-      top_btn();
+      // alertInfo();
+      // navSet();
+      // top_btn();
     })
     let loc1 = location.href.split('/').slice(3,5);
     if(loc1 == ["login"].toString()){

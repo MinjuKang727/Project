@@ -246,24 +246,27 @@ function logout(){
 // }
 
 function ck_id(input_id){
-  var regid = '^^[a-zA-Z]\w{6,12}$/';
+  let regid = RegExp(/^[A-Za-z0-9_\-]{6,15}$/);
   console.log(regid.test(input_id));
   if(regid.test(input_id)){
     return fetch(`/signup/confirm/result/?mb_id=${input_id}`)
   }else{
     return false;
   }
-}
-let confirm_id = () => {
+};
+function confirm_id (){
   let ID = $('input[name="mb_id"]').val();
   let rs = true;
   while(rs){
     if (!ID){
       swal({
         title: '아이디 중복 검사',
-        text: '아이디를 입력해주세요.\n(아이디는 영문 대·소문자 6~12자 이내로 사용 가능합니다.)',
+        text: '아이디를 입력해주세요.\n(아이디는 영문 대·소문자 6~15자 이내로 사용 가능합니다.)',
         content: "input",
-        buttons : true
+        buttons : {
+          text: "확인",
+          closeModal: false,
+        },
     }).then((mb_id)=>{
       ID = mb_id;
     })
@@ -293,7 +296,7 @@ let confirm_id = () => {
     }
   })
   }
-}
+};
 // let terms = $('form[name="term"]:checked');
 // console.log(terms);
 
@@ -305,7 +308,7 @@ function checkSignupForm (){  //회원가입 form 확인
     let regid =  RegExp(/^[A-Za-z0-9_\-]{6,15}$/);
     let regpw =  RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,15}$/);
     let regtel = RegExp(/^01[0179][0-9]{7,8}$/);
-    if(k_name.test($('input[name="mname"]').val()) or e_name.test($('input[name="mname"]').val())){
+    if(k_name.test($('input[name="mname"]').val()) || e_name.test($('input[name="mname"]').val())){
       $('#mname.feedback').attr('class', "feedback valid-feedback");
       $('#mname.feedback').text("사용 가능한 이름입니다.");
     }else{
