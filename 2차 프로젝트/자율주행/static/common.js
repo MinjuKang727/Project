@@ -300,28 +300,57 @@ let confirm_id = () => {
 
 function checkSignupForm (){  //회원가입 form 확인
   $('form[name="signup"]').bind('submit',function(){
-    let regname = '^[가-힣]{1,10}$';
-    let regid = '^^[a-zA-Z]\w{6,12}$/u';
-    if(regname.test($('input[name="mname"]').val())){
+    let k_name = RegExp(/^[가-힣]{2,6}$/);
+    let e_name = RegExp(/^[a-zA-Z]{2,30}$/);
+    let regid =  RegExp(/^[A-Za-z0-9_\-]{6,15}$/);
+    let regpw =  RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,15}$/);
+    let regtel = RegExp(/^01[0179][0-9]{7,8}$/);
+    if(k_name.test($('input[name="mname"]').val()) or e_name.test($('input[name="mname"]').val())){
       $('#mname.feedback').attr('class', "feedback valid-feedback");
-      $('#mname.feedback').text("사용 가능한 이름입니다..");
+      $('#mname.feedback').text("사용 가능한 이름입니다.");
     }else{
       $('#mname.feedback').attr('class', "feedback invalid-feedback");
-      $('#mname.feedback').text("이름은 한글 1~10자 이내로 입력해주세요.");
+      $('#mname.feedback').text("이름은 한글 2~6자 혹은 영어 2~30자 이내로 입력해 주세요.");
       $('input[name="mname"]').focus();
       return false;
     }
-    if(regid.test($('input[name="mid"]').val())){
-          
-      }
-      if($('input[name="mpw"]').val() == ''){
-          swal(
-              "비밀번호 미입력",
-              "비밀번호를 입력해 주세요."
-              )
-          $('input[name="mpw"]').focus();
-          return false;
-      }
+    if(regid.test($('input[name="mb_id"]').val())){
+      $('#mb_id.feedback').attr('class', "feedback valid-feedback");
+      $('#mb_id.feedback').text("사용 가능한 아이디입니다.");
+    }else{
+      $('#mb_id.feedback').attr('class', "feedback invalid-feedback");
+      $('#mb_id.feedback').text("아이디는 영문, 숫자 _,-를 6~15자리 이내로 입력해 주세요.");
+      $('input[name="mb_id"]').focus();
+      return false;
+    }
+    if(regpw.test($('input[name="mpw"]').val())){
+      $('#mpw.feedback').attr('class', "feedback valid-feedback");
+      $('#mpw.feedback').text("사용 가능한 비밀번호입니다.");
+    }else{
+      $('#mpw.feedback').attr('class', "feedback invalid-feedback");
+      $('#mpw.feedback').text("비밀번호는 영문 대문자와 소문자, 숫자, 특수문자를 하나 이상 포함하여 8~16자 이내로 입력해야 합니다.");
+      $('input[name="mpw"]').focus();
+      return false;
+    }
+    if($('input[name="mpw_confirm"]').val() == $('input[name="mpw"]').val()){
+      $('#mpw_confirm.feedback').attr('class', "feedback valid-feedback");
+      $('#mpw_confirm.feedback').text("비밀번호가 일치합니다.");
+    }else{
+      $('#mpw_confirm.feedback').attr('class', "feedback invalid-feedback");
+      $('#mpw_confirm.feedback').text("비밀번호가 일치하지 않습니다.");
+      $('input[name="mpw_confirm"]').focus();
+      return false;
+    }
+    if(regtel.test($('input[name="mtel"]').val())){
+      $('#mtel.feedback').attr('class', "feedback valid-feedback");
+      $('#mtel.feedback').text("휴대폰번호 인증을 해주세요.");
+    }else{
+      $('#mtel.feedback').attr('class', "feedback invalid-feedback");
+      $('#mtel.feedback').text("휴대폰번호 양식에 맞지 않습니다.");
+      $('input[name="mtel"]').focus();
+      return false;
+    }
+    return location.replace('/signup');
   });
 }
 
