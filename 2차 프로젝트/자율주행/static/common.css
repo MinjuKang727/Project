@@ -89,13 +89,6 @@ a{
 }
 .icon {width:30px; height:30px;}
 
-/* sweetalert */
-.swal-content__input{
-    color: black;
-}
-
-
-
 /* 위치 정보 */
 .loc_info_wrap{
     width: 100%;

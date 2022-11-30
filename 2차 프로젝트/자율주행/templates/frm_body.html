@@ -30,10 +30,16 @@
     </div>
     <script>
     $(document).ready(() => {
-      // alertInfo();
-      // navSet();
-      // top_btn();
-    })
+      $(".nav-link").removeClass('active');
+      let pageSrc = document.location.href;
+      let navLinks = $('.nav-link')
+      $.each(navLinks, function(index, item){
+        let LinkSrc = $(this).attr('href');
+        if (pageSrc.endsWith(LinkSrc)){
+          $(this).addClass('active');
+        }
+      })
+    });
     let loc1 = location.href.split('/').slice(3,5);
     if(loc1 == ["login"].toString()){
        checkLoginForm();

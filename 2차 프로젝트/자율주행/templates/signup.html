@@ -1,5 +1,4 @@
 {% extends "frm_body.html" %}
-{% block title %}회원 가입{% endblock %}
 {% block head %}
 {{ super() }}
 {% endblock %}  
@@ -16,20 +15,20 @@
     <form name="signup" method="post" action="/signup/result">
         <div id="signup_input">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="mname" id="mname" maxlength="10" placeholder="이름" >
-                <label for="mname">이름</label>
+                <input type="text" class="form-control" name="M_NAME" id="M_NAME" maxlength="10" placeholder="이름" >
+                <label for="M_NAME">이름</label>
                 <div class="feedback"></div>
             </div>
             <div class="form-floating input-group mb-3">
-                <input type="text" name="mb_id" class="form-control" id="mb_id" placeholder="아이디" maxlength="12" aria-label="아이디" aria-describedby="button-addon2">
-                <label for="mid">아이디</label>
+                <input type="text" name="M_ID" class="form-control" id="M_ID" placeholder="아이디" maxlength="12" aria-label="아이디" aria-describedby="button-addon2">
+                <label for="M_ID">아이디</label>
                 <button class="btn btn-secondary" type="button" onclick="confirm_id();" >중복확인</button>
                 <input type="hidden" name="id_confirm" readonly value="false">
                 <div class="feedback"></div>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" name="mpw" id="mpw" maxlength="20" autocomplete="off" placeholder="비밀번호">
-                <label for="mpw">비밀번호</label>
+                <input type="password" class="form-control" name="M_PW" id="M_PW" maxlength="20" autocomplete="off" placeholder="비밀번호">
+                <label for="M_PW">비밀번호</label>
                 <div class="feedback"></div>
             </div>
             <div class="form-floating mb-3">
@@ -37,16 +36,9 @@
                 <label for="mpw_confirm" >비밀번호 확인</label>
                 <div class="feedback"></div>
             </div>
-            <div class="form-floating input-group mb-3">
-                <input type="tel" name="mtel" class="form-control" id="mtel" placeholder="휴대폰 번호" aria-label="휴대폰 번호" aria-describedby="button-addon2">
-                <label for="mtel">휴대폰 번호</label>
-                <button class="btn btn-secondary" type="button">인증</button>
-                <div class="feedback"></div>
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" name="token" class="form-control" id="confirm" placeholder="본인 인증" aria-label="본인 인증" aria-describedby="button-addon2">
-                <button class="btn btn-secondary" type="button">확인</button>
-                <input type="hidden" name="self_confirm" readonly value="false">
+            <div class="form-floating mb-3">
+                <input type="tel" class="form-control" name="M_TEL" id="M_TEL" autocomplete="off" placeholder="010-0000-0000">
+                <label for="M_TEL" >휴대폰 번호</label>
                 <div class="feedback"></div>
             </div>
         </div>

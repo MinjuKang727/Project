@@ -244,59 +244,145 @@ function logout(){
 //     }
 //   }
 // }
+function IDinputAlert(){
+  swal({
+    title: '아이디 중복 검사',
+    text: '아이디를 입력해주세요.\n(아이디는 영문 대·소문자 6~15자 이내로 사용 가능합니다.)',
+    content: "input",
+    buttons : true,
+  }).then((result) =>{
+    console.log("IDinputAlert:",result);
+    return result;
+  })
+}
 
-function ck_id(input_id){
-  let regid = RegExp(/^[A-Za-z0-9_\-]{6,15}$/);
-  console.log(regid.test(input_id));
-  if(regid.test(input_id)){
-    return fetch(`/signup/confirm/result/?mb_id=${input_id}`)
+function countSameID(input_id){
+  let result = false;
+  let M_ID = {"M_ID" : input_id};
+
+  $.ajax({
+    type: "POST",
+    url: "/signup/idck",
+    contentType: 'application/json',
+    dataType: 'JSON',
+    data: JSON.stringify(M_ID),
+    success: function(report){
+      result = report['result'];
+    },
+    error: function(e){
+    }
+  });
+  console.log("countSameID:",result);
+  return result;
+}
+
+function ck_id(ID){
+  if(countSameID(ID)){
+    console.log("사용 가능 아이디");
+    swal({
+      title: '아이디 중복 검사 결과',
+      text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
+      buttons : true,
+      }).then((result)=>{
+        if (!result){
+          $('input[name="M_ID"]').val('');
+        }else{
+          $('input[name="M_ID"]').val(ID);
+        }
+      })
   }else{
-    return false;
+    console.log("사용 불가능 아이디");
+
+    swal({
+      title: '아이디 중복 검사 결과',
+      text: '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
+      buttons: true,
+      }).then(()=>{
+        $('input[name="M_ID"]').val('');
+      }
+      )
   }
-};
+}
+
 function confirm_id (){
-  let ID = $('input[name="mb_id"]').val();
-  let rs = true;
-  while(rs){
-    if (!ID){
-      swal({
-        title: '아이디 중복 검사',
-        text: '아이디를 입력해주세요.\n(아이디는 영문 대·소문자 6~15자 이내로 사용 가능합니다.)',
-        content: "input",
-        buttons : {
-          text: "확인",
-          closeModal: false,
-        },
-    }).then((mb_id)=>{
-      ID = mb_id;
+  let ID = $('input[name="M_ID"]').val();
+  let regid = /^[A-Za-z0-9_\-]{6,15}$/;
+  let done = "";
+  while(!regid.test(ID)){
+    console.log("정규식 통과?", regid.test(ID));
+    IDinputAlert();
+    $('.swal-button--confirm').on('click', function(){
+      ID = result;
     })
     }
-    ck_id(ID).then((results) => {
-    if (results){
-      swal(
-        '아이디 중복 검사 결과',
-        `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
-        {buttons : true}
-      ).then((value) => {
-        if(value) {
-          $('input[name="mid"]').val(ID);
-          end = value;
-        }
-      })
-    }else{
-      swal(
-        '아이디 중복 검사 결과',
-        '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
-        {buttons : true}
-      ).then((again)=>{
-        if (!again){
-          rs = false;
-        }
-      })
-    }
-  })
-  }
-};
+  
+  ck_id(ID);
+}
+
+
+  //   }).then((answer)=>{
+  //     console.log('2');
+  //     console.log(answer);
+  //   if (answer){
+  //     console.log('5');
+  //       if (ck_id(ID)){
+  //         console.log('7');
+  //         swal({
+  //           title: '아이디 중복 검사 결과',
+  //           text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
+  //           buttons : true,
+  //         }).then((value) => {
+  //           console.log('8');
+  //           if(value) {
+  //             console.log('9');
+  //             $('input[name="M_ID"]').val(ID);
+  //             end = value;
+  //           }
+  //         })
+  //       }else{
+  //         console.log('이미 사용 중인 아이디');
+  //         swal({
+  //           title: '아이디 중복 검사 결과',
+  //           text: '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
+  //           buttons: true,
+  //         }).then((again)=>{
+  //           console.log('11');
+  //           rs = again;
+  //         })
+  //       }
+  //     }
+  //   })
+  //   }else{
+  //   if (ck_id(ID)){
+  //     console.log('7');
+  //     swal({
+  //       title: '아이디 중복 검사 결과',
+  //       text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
+  //       buttons : true,
+  //     }).then((value) => {
+  //       console.log('8');
+  //       if(value) {
+  //         console.log('9');
+  //         $('input[name="M_ID"]').val(ID);
+  //         end = value;
+  //       }
+  //     })
+  //   }else{
+  //     console.log('10');
+  //     swal({
+  //       title: '아이디 중복 검사 결과',
+  //       text: '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
+  //       buttons : true,
+  //     }).then((again)=>{
+  //       console.log('11');
+  //       rs = again;
+  //     })
+  //   }
+  //   }
+  //   }
+    
+  // }
+
 // let terms = $('form[name="term"]:checked');
 // console.log(terms);
 
@@ -313,7 +399,7 @@ function checkSignupForm (){  //회원가입 form 확인
       $('#mname.feedback').text("사용 가능한 이름입니다.");
     }else{
       $('#mname.feedback').attr('class', "feedback invalid-feedback");
-      $('#mname.feedback').text("이름은 한글 2~6자 혹은 영어 2~30자 이내로 입력해 주세요.");
+      $('#mname.feedback').text("이름은 한글 2~6자로 입력해 주세요.");
       $('input[name="mname"]').focus();
       return false;
     }
