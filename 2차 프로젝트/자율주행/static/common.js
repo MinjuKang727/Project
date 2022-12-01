@@ -228,24 +228,6 @@ function logout(){
 // }
 
 ////////////회원가입///////////////////
-
-// function ckInput(val){
-//   if (val == 'name'){
-//     let regname = r'^[가-힣]{1,10}$';
-//     if(regname.test($('input[name="mname"]').val())){
-//       $('#mname.feedback').attr('class', "feedback valid-feedback");
-//       $('#mname.feedback').attr('class', "feedback valid-feedback");
-
-//     }else{
-//       $('#mname.feedback').attr('class', "feedback invalid-feedback");
-//       $('#mname.feedback').text("이름은 한글 1~10자 이내로 입력해주세요.");
-//       $('input[name="mname"]').focus();
-//       return false;
-//     }
-//   }
-// }
-
-
 function countSameID(input_id){
   let M_ID = {"M_ID" : input_id};
   let result = false;
@@ -264,11 +246,10 @@ function countSameID(input_id){
       console.log("error",e);
     }
   });
-  return new Promise(resolve() => {
-    
+  return result;
 }
 
-function ck_id(ID){
+async function ck_id(ID){
   let regid = /^[A-Za-z0-9_\-]{6,15}$/;
   if (!regid.test(ID)){
     swal({
@@ -280,12 +261,9 @@ function ck_id(ID){
       ck_id(result);
     })
   }else{
-    console.log("정규식 통과 ID",ID)
     let countSameID_value = "";
     countSameID_value = countSameID(ID);
-    if (countSameID_value == ""){
-      setTimeout
-    }
+    console.log("reuslt:",countSameID_value);
     if(countSameID_value){
     console.log("사용 가능 아이디");
     swal({
@@ -310,6 +288,12 @@ function ck_id(ID){
             $('input[name="M_ID"]').val('');
         }
         )
+    }else{
+      swal({
+        title: '데이터 전송 지연',
+        text: '아이디 중복 검사 결과를 받지 못했습니다.',
+        button: true,
+      })
     };
   };
 }
