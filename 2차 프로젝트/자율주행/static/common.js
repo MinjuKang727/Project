@@ -244,21 +244,11 @@ function logout(){
 //     }
 //   }
 // }
-function IDinputAlert(){
-  swal({
-    title: '아이디 중복 검사',
-    text: '아이디를 입력해주세요.\n(아이디는 영문 대·소문자 6~15자 이내로 사용 가능합니다.)',
-    content: "input",
-    buttons : true,
-  }).then((result) =>{
-    console.log("IDinputAlert:",result);
-    return result;
-  })
-}
+
 
 function countSameID(input_id){
-  let result = false;
   let M_ID = {"M_ID" : input_id};
+  let result = false;
 
   $.ajax({
     type: "POST",
@@ -267,20 +257,39 @@ function countSameID(input_id){
     dataType: 'JSON',
     data: JSON.stringify(M_ID),
     success: function(report){
+      console.log("success", report);
       result = report['result'];
     },
     error: function(e){
+      console.log("error",e);
     }
   });
-  console.log("countSameID:",result);
-  return result;
+  return new Promise(resolve() => {
+    
 }
 
 function ck_id(ID){
-  if(countSameID(ID)){
+  let regid = /^[A-Za-z0-9_\-]{6,15}$/;
+  if (!regid.test(ID)){
+    swal({
+      title: '아이디 유효성 검사',
+      text: '아이디를 다시 입력해주세요.\n(아이디는 영문 대·소문자 6~15자 이내로 사용 가능합니다.)',
+      content: "input",
+      button : true,
+    }).then((result) =>{
+      ck_id(result);
+    })
+  }else{
+    console.log("정규식 통과 ID",ID)
+    let countSameID_value = "";
+    countSameID_value = countSameID(ID);
+    if (countSameID_value == ""){
+      setTimeout
+    }
+    if(countSameID_value){
     console.log("사용 가능 아이디");
     swal({
-      title: '아이디 중복 검사 결과',
+      title: '아이디 중복 검사',
       text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
       buttons : true,
       }).then((result)=>{
@@ -290,34 +299,26 @@ function ck_id(ID){
           $('input[name="M_ID"]').val(ID);
         }
       })
-  }else{
-    console.log("사용 불가능 아이디");
+    }else if (countSameID_value != ""){
+      console.log("사용 불가능 아이디");
 
-    swal({
-      title: '아이디 중복 검사 결과',
-      text: '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
-      buttons: true,
-      }).then(()=>{
-        $('input[name="M_ID"]').val('');
-      }
-      )
-  }
+      swal({
+        title: '아이디 중복 검사',
+        text: '이미 사용 중인 아이디 입니다.',
+        button: true,
+        }).then(()=>{
+            $('input[name="M_ID"]').val('');
+        }
+        )
+    };
+  };
 }
 
 function confirm_id (){
   let ID = $('input[name="M_ID"]').val();
-  let regid = /^[A-Za-z0-9_\-]{6,15}$/;
-  let done = "";
-  while(!regid.test(ID)){
-    console.log("정규식 통과?", regid.test(ID));
-    IDinputAlert();
-    $('.swal-button--confirm').on('click', function(){
-      ID = result;
-    })
-    }
-  
   ck_id(ID);
 }
+
 
 
   //   }).then((answer)=>{
