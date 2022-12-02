@@ -21,7 +21,8 @@
     {% endblock %}
 </head>
 
-<body onload="window.self.focus();">
+<!-- <body onload="window.self.focus();"> -->
+<body>
     <input type="hidden" value= "{{info}}"  name="info">
 
     <div class="wrap">
@@ -40,10 +41,10 @@
         }
       })
     });
-    let loc1 = location.href.split('/').slice(3,5);
-    if(loc1 == ["login"].toString()){
-       checkLoginForm();
-    }
+    // let loc1 = location.href.split('/').slice(3,5);
+    // if(loc1 == ["login"].toString()){
+    //    checkLoginForm();
+    // }
 
     </script>
 </body>

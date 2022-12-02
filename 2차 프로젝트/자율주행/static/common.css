@@ -328,7 +328,6 @@ a{
     margin:3em auto;
     max-width: 20rem; 
     width: 67%;
-    text-align: center;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -352,6 +351,11 @@ a{
 .login_form > form{
     width: 100%;
 }
+
+.login_form > div > button{
+    text-align: center;
+}
+
 .login_ext_div{
     margin: 1em auto;
     display: flex;
