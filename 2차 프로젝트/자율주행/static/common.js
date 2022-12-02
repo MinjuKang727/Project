@@ -228,9 +228,11 @@ function logout(){
 // }
 
 ////////////회원가입///////////////////
-function countSameID(input_id){
-  let M_ID = {"M_ID" : input_id};
-  let result = false;
+
+//DB에서 ID 조회 >> 아이디 중복성 검사
+function ck_id2(ID){
+  let M_ID = {"M_ID" : ID};
+  let set = ""
 
   $.ajax({
     type: "POST",
@@ -238,139 +240,84 @@ function countSameID(input_id){
     contentType: 'application/json',
     dataType: 'JSON',
     data: JSON.stringify(M_ID),
-    success: function(report){
-      console.log("success", report);
-      result = report['result'];
-    },
-    error: function(e){
-      console.log("error",e);
-    }
-  });
-  return result;
+  }).then((result)=>{
+    if (result){
+      swal({
+        title: '아이디 중복 검사',
+        text: `사용 가능한 아이디\n[ ${ID} ]\n 이 아이디를 사용하시겠습니까?`,
+        buttons :{
+          cancel: "취소",
+          ok: "확인"
+        }
+        }).then((result)=>{
+          switch(result){
+            case "ok" :
+              set = M_ID["M_ID"];
+            case "cancel" :
+              $('input[name="M_ID"]').val("");
+            default:
+              $('input[name="M_ID"]').val("");
+          }
+          $('input[name="M_ID"]').val(set);
+        })
+        
+      }else if (result == false && result != ""){
+        console.log("사용 불가능 아이디");
+    
+        swal({
+          title: '아이디 중복 검사',
+          text: '이미 사용 중인 아이디 입니다.',
+          buttons: {
+            cancel: "취소",
+            ok: "확인"
+          },
+          }).then((result)=>{
+            switch(result){
+              case "ok" :
+                ck_id1("");
+              case "cancel" :
+                $('input[name="M_ID"]').val('');
+              default:
+                $('input[name="M_ID"]').val('');
+            }
+          })
+      };
+  })
 }
 
-async function ck_id(ID){
+
+// 정규식 검사
+function ck_id1(ID){
   let regid = /^[A-Za-z0-9_\-]{6,15}$/;
   if (!regid.test(ID)){
     swal({
       title: '아이디 유효성 검사',
       text: '아이디를 다시 입력해주세요.\n(아이디는 영문 대·소문자 6~15자 이내로 사용 가능합니다.)',
       content: "input",
-      button : true,
+      buttons : {
+        cancel: "취소",
+        ok: "확인"
+      },
     }).then((result) =>{
-      ck_id(result);
+      switch(result){
+        case "ok" :
+          ID = $('.swal-content__input').val();
+          ck_id1(ID);
+        case "cancel" :
+          $('input[name="M_ID"]').val("");
+        default:
+          $('input[name=M_ID]').val("");
+      }
     })
   }else{
-    let countSameID_value = "";
-    countSameID_value = countSameID(ID);
-    console.log("reuslt:",countSameID_value);
-    if(countSameID_value){
-    console.log("사용 가능 아이디");
-    swal({
-      title: '아이디 중복 검사',
-      text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
-      buttons : true,
-      }).then((result)=>{
-        if (!result){
-          $('input[name="M_ID"]').val('');
-        }else{
-          $('input[name="M_ID"]').val(ID);
-        }
-      })
-    }else if (countSameID_value != ""){
-      console.log("사용 불가능 아이디");
-
-      swal({
-        title: '아이디 중복 검사',
-        text: '이미 사용 중인 아이디 입니다.',
-        button: true,
-        }).then(()=>{
-            $('input[name="M_ID"]').val('');
-        }
-        )
-    }else{
-      swal({
-        title: '데이터 전송 지연',
-        text: '아이디 중복 검사 결과를 받지 못했습니다.',
-        button: true,
-      })
-    };
-  };
+    ck_id2(ID);
+  }     
 }
 
 function confirm_id (){
   let ID = $('input[name="M_ID"]').val();
-  ck_id(ID);
+  ck_id1(ID);
 }
-
-
-
-  //   }).then((answer)=>{
-  //     console.log('2');
-  //     console.log(answer);
-  //   if (answer){
-  //     console.log('5');
-  //       if (ck_id(ID)){
-  //         console.log('7');
-  //         swal({
-  //           title: '아이디 중복 검사 결과',
-  //           text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
-  //           buttons : true,
-  //         }).then((value) => {
-  //           console.log('8');
-  //           if(value) {
-  //             console.log('9');
-  //             $('input[name="M_ID"]').val(ID);
-  //             end = value;
-  //           }
-  //         })
-  //       }else{
-  //         console.log('이미 사용 중인 아이디');
-  //         swal({
-  //           title: '아이디 중복 검사 결과',
-  //           text: '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
-  //           buttons: true,
-  //         }).then((again)=>{
-  //           console.log('11');
-  //           rs = again;
-  //         })
-  //       }
-  //     }
-  //   })
-  //   }else{
-  //   if (ck_id(ID)){
-  //     console.log('7');
-  //     swal({
-  //       title: '아이디 중복 검사 결과',
-  //       text: `사용 가능한 아이디 : ${ID}\n 이 아이디를 사용하시겠습니까?`,
-  //       buttons : true,
-  //     }).then((value) => {
-  //       console.log('8');
-  //       if(value) {
-  //         console.log('9');
-  //         $('input[name="M_ID"]').val(ID);
-  //         end = value;
-  //       }
-  //     })
-  //   }else{
-  //     console.log('10');
-  //     swal({
-  //       title: '아이디 중복 검사 결과',
-  //       text: '이미 사용 중인 아이디 입니다.\n다시 입력 하시겠습니까?',
-  //       buttons : true,
-  //     }).then((again)=>{
-  //       console.log('11');
-  //       rs = again;
-  //     })
-  //   }
-  //   }
-  //   }
-    
-  // }
-
-// let terms = $('form[name="term"]:checked');
-// console.log(terms);
-
 
 function checkSignupForm (){  //회원가입 form 확인
   $('form[name="signup"]').bind('submit',function(){
