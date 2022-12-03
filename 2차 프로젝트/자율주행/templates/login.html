@@ -39,4 +39,11 @@
     <button type="button" class="btn btn-outline-warning btn-signup" onclick="location.replace('/signup');">회원가입</button>
 </div>
 </div>
+<script>
+    $(document).on('keyup', function(key){
+        if(key.keyCode==13) {
+            checkLoginForm();
+        }
+    });
+</script>
 {% endblock %}

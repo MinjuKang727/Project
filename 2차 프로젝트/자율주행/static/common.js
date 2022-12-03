@@ -1,149 +1,4 @@
-let loc = location.href.split('/').slice(3,5);
-// let info = $('input[name=info]').val()
-// console.log(info);
-
-// top버튼
-let top_btn = () => {
-    $(window).scroll(function() {
-      if ($(this).scrollTop() > 250) {
-        $('#top_btn').fadeIn();
-      } else {
-        $('#top_btn').fadeOut();
-      }
-    });
-  
-    $("#top_btn").click(function() {
-      $('html, body').animate({
-        scrollTop : 0
-      }, 400);
-      return false;
-    });
-  }
- 
-// 알림창
-let alertInfo = () => {  
-    if ( loc == ['login', '?i=001666'].toString()){
-        swal(
-            "로그인 실패",
-            "아이디 혹은 비밀번호가 잘못되었습니다.\n 정상적으로 로그인 하였음에도 이 오류가 반복된다면\n관리자에게 문의해 주세요.",
-            "warning"
-            ).then(() => {
-                window.close();
-                window.open('/login');
-                $('input[name="mid"]').focus(); 
-            })
-        }
-    if( loc == ["login", "?i=705001"].toString()){
-        swal(
-            "현재, 로그인 중",
-            "다른 계정으로 로그인을 원하시면\n 로그아웃 후, 다시 로그인 해주세요.",
-            "warning"
-            ).then(() =>{
-              try{
-                history.back();
-              }catch(e){
-                window.close();
-                window.open('/');
-              }
-            
-          })
-        }
-    if ( loc == ["login","?i=001777"].toString()){
-      swal(
-        "로그인 성공",
-        "어서오세요.\nDIAMOND를 방문해 주셔서 감사합니다.",
-        "success"
-      ).then(()=>{
-        window.close();
-        window.open('/');
-        
-      })
-        
-    }
-    if ( loc.slice(-1).slice(-3) == "000"){
-        swal(
-            "잘못된 경로",
-            "잘못된 경로로 접근하셨습니다.",
-            "error"
-          ).then(() => {
-            try{
-                history.back();
-            }catch(e){
-                window.close();
-                window.open('/');
-            }
-            
-          })
-
-    }
-    if (loc == ["mypange","cage","705000"].toString()){
-      swal(
-        "현재, 로그인이 되어 있지 않습니다.",
-        "로그인이 필요한 서비스입니다.\n먼저 로그인을 해 주세요.",
-        "warning"
-        ).then(()=>{
-          window.close();
-          window.open('/');
-        })
-    }
-    if ( loc == ["?i=000777"].toString()){
-        swal(
-        "로그아웃 성공",
-        "DIAMOND를 이용해 주셔서 감사합니다.\n안녕히 가세요.",
-        "success"
-        ).then(()=>{
-          window.close();
-          window.open('/');
-        })
-    }
-    if ( loc == ["?i=000666"].toString()){
-        swal(
-        "로그아웃 실패",
-        "로그아웃이 되지 않았습니다 \n 이 오류가 반복된다면 관리자에게 문의하세요.",
-        "warning"
-        )
-    }
-    if (loc == ["community","free","?i=001666"].toString()){
-      swal(
-        "수정 불가",
-        "게시판의 글은 작성자만 수정 가능합니다.\n현재 로그인된 계정은 본 글의 작성자가 아니므로\n글 수정이 불가합니다.",
-        "warning"
-        ).then(()=>{
-          window.close();
-          window.open('/community/free');
-        })
-    }
-    if (loc == ["community","free","?i=705000"].toString()){
-      swal(
-        "현재, 로그인이 되어 있지 않습니다.",
-        "로그인이 필요한 서비스입니다.\n먼저 로그인을 해 주세요.",
-        "warning"
-        ).then(()=>{
-          window.close();
-          window.open('/community/free');
-        })
-    }
-}
-
-let navSet = () => {  // nav 버튼 setting
-    if(Number("{{session|length}}") == 0){ // 로그인 전,
-      if($('.mypage').title != "로그인을 먼저 해주세요."){
-        $('.mypage').attr('title', '로그인을 먼저 해주세요.');
-      }
-      if($('.my').css('display') == "block"){
-        console.log('my클래스 숨기기');
-        $('.my').hide();
-      }
-    }else{ // 로그인 후,
-      if($('.mypage').title == "로그인을 먼저 해주세요."){
-        $('.mypage').removeAttr('title');
-      }
-      if($('.my').css('display') != "block"){
-        $('.my').show();
-      }
-    }}
 ////////////로그인///////////////////
-
 function checkLoginForm() {  //로그인 form 확인
   if($('input[name="M_ID"]').val() == ''){
     $('#M_ID > .feedback').attr('class', "feedback invalid-feedback");
@@ -178,7 +33,7 @@ function checkLoginForm() {  //로그인 form 확인
       swal("로그인 실패", "로그인 정보를 다시 입력해 주십시오.", "error").then(result =>{
         if (result){
           window.close();
-          window.open('/login');
+          window.open('/');
         }
     });
   }
@@ -188,68 +43,27 @@ function checkLoginForm() {  //로그인 form 확인
 
 ////////////로그아웃////////////////
 function logout(){
-  swal(
-    "로그아웃 확인",
-    "정말로 로그아웃 하시겠습니까?",
-    "warning",
-    {
-      buttons: true,
-      dangerMode: true,
+  swal({
+    title: "로그아웃 확인",
+    text: "정말로 로그아웃 하시겠습니까?",
+    buttons: {
+      cancel:"취소",
+      ok: "확인"
+      }
     }).then((value)=>{
-      if(value){
-        location.replace('/logout');
+      switch(value){
+        case "cancel" :
+          window.location.reload();
+        case "ok" :
+          window.close();
+          window.open('/logout');
+        default :
+          window.location.reload();
       }
     })
 }
-// 로그아웃 함수
-// let logout = () => {
-//     // 로그인 되어 있지 않을 때
-//     if(Number("{{session|length}}") == 0){
-//         swal({
-//         title: "로그아웃 오류",
-//         text: "로그인이 되어있지 않습니다.",
-//         icon: "error"
-//         })
-//     }
-//     // 로그인 계정 : diamond
-//     if ("{{session['login_by'] }}" == 'diamond'){
-//         swal({
-//         title: "로그아웃 확인",
-//         text: "정말로 로그아웃 하시겠습니까?",
-//         icon: "warning",
-//         buttons: true,
-//         dangerMode: true,
-//         })
-//         .then((willLogout) => {
-//         if (willLogout) {
-//             location.href = "/logout"
-            
-//         }
-//         });
-//     }
-//     // 로그인 계정 naver
-//     if ("{{session['login_by'] }}" == 'naver'){
-//         let token = "{{access_token}}";
-//         $.ajax({
-//         url : `https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=58VENhxe4RuqFKX9sZ5e&client_secret=2bRVAPmnNf&access_token=${token}&service_provider=NAVER`,
-//         type : "get",
-//         success : function(res){
-//             let result = res.result;
-//             if (result == 'success'){
-//                 alert('로그아웃 되셨습니다.');
-//             }
-//         },
-//         // 실패했다면 다음 함수를 실행
-//         error : function(){
-//             alert('로그아웃 실패');
-//         }
-//     })
-//     }
-// }
 
 ////////////회원가입///////////////////
-
-
 
 // 아이디 중복 검사
 function confirm_id (){
@@ -316,11 +130,14 @@ function ck_id2(ID){
           }
           $('input[name="M_ID"]').val(set);
           $('input[name="id_confirm"]').val(set);
+          if ($('input[name="M_ID"]').val() != ""){
+            $('#M_ID > .feedback').attr('class', "feedback valid-feedback");
+            $('#M_ID > .feedback').text("사용 가능한 아이디입니다.");
+            $('#M_PW > .feedback').focus();
+          }
         })
         
       }else if (result == false && result != ""){
-        console.log("사용 불가능 아이디");
-    
         swal({
           title: '아이디 중복 검사',
           text: '이미 사용 중인 아이디 입니다.',
@@ -412,9 +229,14 @@ function checkSignupForm (){  //회원가입 form 확인
     console.log(result);
     if (result["result"]){
       swal("회원가입 완료", "DCT의 회원이 되신 것을 축하드립니다!", "success").then(result=>{
-        if (result){
-          window.close();
-          window.open('/login');
+        switch (result){
+          case true :
+            window.close();
+            window.open('/');
+          case false :
+          default:
+            window.close();
+            window.open('/');
         }
       });
     }else{
