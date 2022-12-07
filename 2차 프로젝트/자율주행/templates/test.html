@@ -8,6 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../static/bootstrap.bundle.min.js"></script>
     <script src="../static/test.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c16a77e6857ca09e291bda9a66c86d9a"></script>
+    <link rel ="shortcut icon" type="image/x-icon" href="../static/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../static/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="../static/bootstrap.css" >
     <script>
@@ -19,16 +21,53 @@
         <form method = "POST" name="area" action="/set/map/upload_result" enctype="multipart/form-data">
             <label for="A_NAME" class="form-label mt-4" style="user-select: auto;">공간 이름</label>
             <input type="text" name="A_NAME" class="form-control" placeholder="공간 이름을 입력해 주세요.">
-            <div id="A_SRC">
-                <label for="file" class="form-label mt-4" style="user-select: auto;">스마트팜 설계도면 이미지 파일</label>
-                <input class="form-control" type="file" name="file" style="user-select: auto;">
-                <div class="feedback"></div>
-            </div>
-            <div>
+            <div class="feedback A_NAME"></div>
+            <label for="file" class="form-label mt-4" style="user-select: auto;">스마트팜 설계도면 이미지 파일</label>
+            <input class="form-control" type="file" name="file" style="user-select: auto;">
+            <div class="feedback A_SRC"></div>
+            <div style="margin-top:1rem;">
                 <input type="button" onclick="uploadIMG();" value="업로드" class="btn btn-outline-primary" style="user-select: auto;">
             </div>
         </form>
-        
+        <div id="map" style="width:100%;height:350px;"></div>
     </div>
+<script>
+var domain = 'https://i1.daumcdn.net';
+var path = '/dmaps/apis/openapi/sampleimg/';
+var plan = function( x, y, z ) {
+    y = -y - 1;
+    var limit = Math.ceil( 3 / Math.pow( 2, z ) );
+
+    if ( 0 <= y && y < limit && 0 <= x && x < limit ) {
+        return domain + path + 'planh' +
+            z + '_' + y + '_' + x + '.png';
+    } else {
+        return 'https://i1.daumcdn.net/dmaps/apis/white.png';
+    }
+};
+
+kakao.maps.Tileset.add( 'PLAN',
+        new kakao.maps.Tileset(
+            512, 512, plan, '', false, 0, 2 ) );
+
+var node = document.getElementById( 'map' );
+var map = new kakao.maps.Map( node, {
+    projectionId: null,
+    mapTypeId: kakao.maps.MapTypeId.PLAN,
+    $scale: false,
+    center: new kakao.maps.Coords( 650, -550 ),
+    level: 2
+} );
+var center = map.getCenter();
+var marker = new kakao.maps.Marker({
+    position: center
+});
+marker.setMap(map);
+
+var infowindow = new kakao.maps.InfoWindow({
+    content: '커스텀 타일셋을 올릴수 있습니다!'
+});
+infowindow.open(map, marker);
+</script>
 </body>
 </html>
