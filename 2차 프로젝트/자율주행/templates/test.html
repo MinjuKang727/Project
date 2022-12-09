@@ -8,12 +8,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../static/bootstrap.bundle.min.js"></script>
     <script src="../static/test.js"></script>
-    <!-- <script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=c16a77e6857ca09e291bda9a66c86d9a"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../static/jquery.canvasResize.js"></script> 
+    <script src="../static/canvasResize.js"></script>     
+    <script src="../static/jquery.exif.js"></script>        
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=c16a77e6857ca09e291bda9a66c86d9a"></script>    
     <link rel ="shortcut icon" type="image/x-icon" href="../static/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../static/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="../static/bootstrap.css" >
     <script>
-       
     </script>
 </head>
 <body>
@@ -22,17 +25,21 @@
             <label for="A_NAME" class="form-label mt-4" style="user-select: auto;">공간 이름</label>
             <input type="text" name="A_NAME" class="form-control" placeholder="공간 이름을 입력해 주세요.">
             <div class="feedback A_NAME"></div>
-            <label for="file" class="form-label mt-4" style="user-select: auto;">스마트팜 설계도면 이미지 파일</label>
+            <label for="file" class="form-label mt-4" style="user-select: auto;">스마트팜 설계도면 사진</label>
             <input class="form-control" type="file" name="file" style="user-select: auto;">
             <div class="feedback A_SRC"></div>
             <div style="margin-top:1rem;">
+                <input type="button" onclick="previewIMG();" value="사진 미리보기" class="btn btn-outline-success" style="user-select: auto;">
+                <input type="button" onclick="previewIMG(90);" name="rotation" value="이미지 90도 회전" class="btn btn-outline-success">
                 <input type="button" onclick="uploadIMG();" value="업로드" class="btn btn-outline-primary" style="user-select: auto;">
             </div>
         </form>
-        <div id="map" style="width:100%;height:350px;"></div>
     </div>
-    <div>
+    <div id="previewDiv">
+        <input type="number" name="angle" value="0" hidden>
         <img src="" id="output">
     </div>
+    <input type="text" name="fname" hidden>
+    <div id="map" style="width:100%;height:350px;"></div>
 </body>
 </html>

@@ -226,7 +226,6 @@ function checkSignupForm (){  //회원가입 form 확인
       type : 'POST', 
       data : formData, 
   }).then((result)=>{
-    console.log(result);
     if (result["result"]){
       swal("회원가입 완료", "DCT의 회원이 되신 것을 축하드립니다!", "success").then(result=>{
         switch (result){

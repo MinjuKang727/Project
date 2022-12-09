@@ -4,12 +4,74 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+
 {% endblock %}
 {{ super() }}
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
+{% if areas is defined %}
+   {% if a_info is defined %}
+      {% set a_no = a_info[0] %}
+      {% set a_name = a_info[1] %}
+      {% set a_src = a_info[2] %}
+   {% else %}
+      {% set a_no = areas[0][0] %}
+      {% set a_name = areas[0][1] %}
+      {% set a_src = areas[0][2] %}
+   {% endif %}
+{% endif %}
 <div>
+   <ol class="breadcrumb page_loc">
+      <li class="breadcrumb-item"><a href="/home">공간</a></li>
+      <li class="breadcrumb-item"><a href="#">{{a_no}}.{{a_name}}</a></li>
+   </ol>
 </div>
+<div class="content" style="padding:0;">
+   {% if areas is defined %}
+   <h3>{{ a_name }}</h3>
+   <div class="loc_info_wrap">
+      <div class="area_map">
+            <div class="area_img">
+               <img src="../static/upload/{{ a_src }}">
+            </div>
+         </div>
+         <div class="area_list">
+            <h3>공간 리스트</h3>
+            <table class="table table-hover">
+               <thead>
+                     <tr>
+                        <th>이름</th>
+                     </tr>
+               </thead>
+               {% for no, name, src in areas %}
+                  <tr>
+                     <td><a href="/home/{{ no }}" console>{{name}}</a></td>
+                  </tr>
+               {% endfor %}
+            </table>
+         </div>
+         {% else %}
+      <div class="area_map">
+         <h3 class="center"> 관리 및 설정 페이지에서 공간을 등록해 주십시오. </h3>
+      </div>
+      <div class="area_list">
+         <h3>공간 리스트</h3>
+         <table class="table table-hover">
+               <thead>
+                  <tr>
+                     <th>이름</th>
+                  </tr>
+               </thead>
+                  <tr>
+                     <td>등록된 공간이 없습니다.</td>
+                  </tr>
+         </table>
+      </div>
+         {% endif %}
+   </div>
+</div> 
+{% endblock %}
+{% block footer%}
 {% include 'frm_footer.html' ignore missing%}
 {% endblock %}

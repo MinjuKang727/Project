@@ -73,7 +73,6 @@ function resizeIMG(file, angle){
     quality: 100,
     rotate: angle,
     callback: function(data, width, height) {
-      console.log(data);
         return data
     }
 });

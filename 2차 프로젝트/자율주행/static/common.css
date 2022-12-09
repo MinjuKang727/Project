@@ -27,12 +27,15 @@ ul>li>a {
     text-decoration: none;
 }
 a{text-decoration: none;}
+
 #header+div{
     clear:both;
     display:block;
-    margin-top: 2.718em;
+    margin-top: 2.5em;
 }
-.wrap{width:auto; min-height: 100%; }
+
+.wrap{position:relative; min-height: 100%; padding-bottom: 60px;}
+
 
 .home_wrap{
     margin: 3em auto;
@@ -76,52 +79,62 @@ a{text-decoration: none;}
     flex-direction:row;
     flex-wrap: wrap;
 }
-.sf_map{
-    width: 50rem;
+.area_map{
+    width: 60%;
+    min-width: 15rem;
     height: 35rem;
     flex:auto;
     flex-grow: 3;
-    margin-bottom: 2rem;
     overflow: scroll;
 }
 
-.sf_map { overflow: overlay; }
+.area_map { overflow: overlay; }
 
-.sf_map::-webkit-scrollbar {
+.area_map::-webkit-scrollbar {
     width: 1vw;
 }
 
-.sf_map::-webkit-scrollbar-thumb {
+.area_map::-webkit-scrollbar-thumb {
     background-color: hsla(0, 0%, 42%, 0.49);
     border-radius: 100px;
 }
 
-.sf_map > img {
+.area_map > img {
     width:100%;
     height: auto;
     object-fit: contain;
 }
-.sfr_list{
+.area_list{
     overflow:scroll;
-    width: 10rem;
+    padding: 0 1rem;
+    width: 25%;
+    min-width: 8rem;
     height: 100%;
     flex:auto;
     flex-grow: 1;
 }
-.sfr_list { overflow: overlay; }
+.area_list { overflow: overlay; }
 
-.sfr_list::-webkit-scrollbar {
+.area_list::-webkit-scrollbar {
     width: 1vw;
 }
 
-.sfr_list::-webkit-scrollbar-thumb {
+.area_list::-webkit-scrollbar-thumb {
     background-color: hsla(0, 0%, 42%, 0.49);
     border-radius: 100px;
 }
-.sfr_list > table {
+.area_list > table {
     border: none;
 }
-.intro_member, .mypage_cage {
+
+.area_list > table > td : hover {
+    transform: scale(1.03);
+    cursor:pointer;
+    background-color: white;
+    opacity: 0.5;
+}
+
+.intro_member, .set_element {
     max-width: 100%;
     width : fit-content;
     height : 100%;
@@ -132,18 +145,18 @@ a{text-decoration: none;}
     text-align: center;
     justify-content: center;
 }
-.member, .cage {
+.member, .element {
     margin: 0.5em;
     width: 23em; 
     height: 100%;
     display:inline;
     float: left;
 }
-.cage:hover {
+.element:hover {
     transform: scale(1.03);
     cursor:pointer;
 }
-.cage_info {
+.element_info {
     width: 80%;
     height: 100%;
     margin: 3em auto;
@@ -197,22 +210,6 @@ a{text-decoration: none;}
 .circle{
     border-top-right-radius: 50%;
     border-bottom-left-radius: 50%;
-}
-
-
-.top_btn{
-    padding: 0.5em;
-    border : 1px solid #666;
-    text-align: center;
-    width: 3em;
-    height: 4em;
-    border-radius: 0.5em;
-    background-color: white;
-    position: fixed; 
-    right: 1em; 
-    bottom: 7em; 
-    display: none; 
-    z-index: 9999;
 }
 
 .hidden{

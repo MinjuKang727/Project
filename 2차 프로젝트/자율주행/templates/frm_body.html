@@ -23,12 +23,10 @@
 
 <!-- <body onload="window.self.focus();"> -->
 <body>
-    <input type="hidden" value= "{{info}}"  name="info">
-
     <div class="wrap">
     {% block wrap %}{% endblock %}
-    {% block footer %}{% endblock %}
     </div>
+    {% block footer %}{% endblock %}
     <script>
     $(document).ready(() => {
       $(".nav-link").removeClass('active');
@@ -41,11 +39,6 @@
         }
       })
     });
-    // let loc1 = location.href.split('/').slice(3,5);
-    // if(loc1 == ["login"].toString()){
-    //    checkLoginForm();
-    // }
-
     </script>
 </body>
 </html>
