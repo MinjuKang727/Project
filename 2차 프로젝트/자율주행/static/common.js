@@ -320,6 +320,7 @@ function uploadIMG(){
     console.log('name == ""');
     $('.A_NAME.feedback').css(invalidCSS);
     $('.A_NAME.feedback').text('공간 이름을 입력해 주십시오.');
+    $('.A_NAME.feedback').focus();
     check = false;
   }else{
     $('.A_NAME.feedback').css('height', "0");
