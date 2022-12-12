@@ -35,7 +35,7 @@
             </div>
          </form>
    </section>
-   {% for i in range(4) %}
+   {% in range() %}
       <section class="bg-dark" id="{{ set_list[i]['id'] }}">
          <div class="set_list">
             <h3>{{ set_list[i]['title'] }}</h3>
@@ -68,29 +68,7 @@
       </section>
    {% endfor %}
    </div>
-   <div class="area_list">
-      <h3>공간 리스트</h3>
-         <table class="table table-hover">
-            <thead>
-                  <tr>
-                     <th>공간 번호</th>
-                     <th>공간 이름</th>
-                  </tr>
-            </thead>
-            {% if set_list is defined %}
-               {% for no, name, src in set_list['area'] %}
-                  <tr href="/set/{{ no }}">
-                     <td>{{ no }}</td>
-                     <td>{{ name }}</td>
-                  </tr>
-               {% endfor %}
-            {% else %}
-               <tr href="/set">
-                  <td colspan="4">등록된 공간 없음</td>
-               </tr>
-            {% endif %}
-         </table>
-   </div>
+   {% include 'sec_area.html' ignore missing%}
 </div>
 {% include 'frm_footer.html' ignore missing%}
 {% endblock %}

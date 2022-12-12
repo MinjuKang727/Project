@@ -1,0 +1,30 @@
+<section class="bg-dark" id="{{ set_list['robot']['id'] }}">
+    <div class="set_list">
+        <h3>{{ set_list['robot']['title'] }} (총 {{ set_list['robot']['total'] }}개)</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    {% for set_col in set_list['robot']['th'] %}
+                        <th>{{ set_col }}</th>
+                    {% endfor %}
+                    <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+                </tr>
+            </thead>
+            {% if set_list['robot']['td'] != [] %}
+                {% for td in set_list['robot']['td'] %}
+                <tr>
+                    {% for data in td %}
+                        <td>{{ data }}</td>
+                    {% endfor %}
+                    <th><button type="button" class="btn btn-primary">수정</button></th>
+                    <th><button type="button" class="btn btn-primary">삭제</button></th>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="{{ set_list['robot']['th'] | length + 2}}">등록된 {{ set_list['robot']['title'] }} 없음</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+</section>
