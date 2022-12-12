@@ -248,96 +248,49 @@ function checkSignupForm (){  //회원가입 form 확인
   }
 })}
 
-// 게시판
+/* 관리 및 설정 */
+let fname = "";
 
-let search = () => {
-  let keyword = $("input[name='search_keyword']").val();
-  let selector = $("select").val();
-  location.href = `/community/free/latest/n1/${selector}_${keyword}`;
-}
-
-///////////게시글 수정 ////////
-let content_length_ck = () => {
-  let c_val = $('input[name="manager_content"]').val();
-  if(c_val.length > 9600){
-    swal(
-        "내용 초과 입력",
-        "내용은 9600자까지만 입력 가능합니다.\n 수정해 주세요."
-        )
-    $('input[name="manager_content"]').val(c_val.substring(0, 9600));
-    $('input[name="manager_content"]').focus();
-}
-}
-let content_ck = () => {
-  $('form[name="content_update"]').bind('submit',function(){
-    if($('input[name="manager_title"]').val() == ''){
-        swal(
-            "제목 미입력",
-            "제목을 입력해 주세요."
-            )
-        $('input[name="manager_title"]').focus();
-        return false;
-    }
-    if($('input[name="manager_content"]').val() == ''){
-        swal(
-            "내용 미입력",
-            "내용을 주세요."
-            )
-        $('input[name="manager_content"]').focus();
-        return false;
-    }
-    if($('input[name="manager_content"]').val().length > 9600){
-      swal(
-          "내용 초과 입력",
-          "내용은 9600자까지만 입력 가능합니다.\n 수정해 주세요."
-          )
-      $('input[name="manager_content"]').val($('input[name="manager_content"]').val().substring(0, 9600));
-      $('input[name="manager_content"]').focus();
-      return false;
-  }
-});
-}
-
-
-///////////// 관리 및 설정 ////////////////
 function uploadIMG(){
   let formData = new FormData();
   formData.append('A_NAME', $('input[name=A_NAME]').val());
   formData.append('file', $('input[name=file]')[0].files[0]);
+  formData.append('angle', $('input[name=angle]').val());
 
   let validCSS = {
     'height' : '30px',
     'color' : 'green',
     'font-size' : '15px'
   }
+
   let invalidCSS = {
     'height' : '30px',
     'color' : 'red',
     'font-size' : '15px'
   }
+
+// input 입력 값 체크
   let check = true;
   if ($('input[name=A_NAME]').val() == ""){
-    console.log('name == ""');
     $('.A_NAME.feedback').css(invalidCSS);
     $('.A_NAME.feedback').text('공간 이름을 입력해 주십시오.');
-    $('.A_NAME.feedback').focus();
     check = false;
   }else{
     $('.A_NAME.feedback').css('height', "0");
     $('.A_NAME.feedback').text("");
   } 
   if ($('input[name=file]').val() == ""){
-    $('img').attr('src', "");
+    $('#previewDiv').empty();
     $('.A_SRC.feedback').css(invalidCSS);
     $('.A_SRC.feedback').text('설계도면 이미지 파일을 선택해 주십시오.');
     check = false;
   }else{
+    $('#previewDiv').empty();
     $('.A_SRC.feedback').css('height', "0");
     $('.A_SRC.feedback').text("");
-    $('img').attr('src', "");
   }
+// ajax 통신
   if (check){
-  
     $.ajax({
     url : "/set/map/upload_result", 
     type : 'POST', 
@@ -348,8 +301,7 @@ function uploadIMG(){
     if (result["result"]){
       $('.A_SRC.feedback').css(validCSS);
       $('.A_SRC.feedback').text(result["message"]);
-      $('input[name=fname]').val(result["fname"]);
-
+      $('#previewDiv').empty();
     }else{
       $('.A_SRC.feedback').css(invalidCSS);
       $('.A_SRC.feedback').text(result["message"]);
@@ -358,25 +310,34 @@ function uploadIMG(){
   }
 };
 
+// 이미지 미리보기 기능
 function previewIMG(rotation){
   let file = $('input[name=file]')[0].files[0];
+  if (fname != file){
+    fname = file;
+    $('input[name=angle]').val("0");
+  }
   let angle = Number($('input[name=angle]').val());
+  
   if (rotation == 90){
     angle = (angle + rotation) % 360;
     $('input[name=angle]').val(angle);
   }
-  $('img').attr('src', resizeIMG(file, angle));
+  $('#previewDiv').empty();
+  resizeIMG(file, angle);
 }
 
+// 이미지 크기 조정
 function resizeIMG(file, angle){
-  $.canvasResize(file, {
-    width: 300,
-    height: 0,
-    crop: false,
-    quality: 100,
-    rotate: angle,
-    callback: function(data, width, height) {
-        return data
-    }
-});
-}
+    $.canvasResize(file, {
+      width: 300,
+      height: 0,
+      crop: false,
+      quality: 100,
+      rotate: angle,
+      callback: function(data, width, height) {
+        let img = `<img src="${data}">`
+        $(img).appendTo('#previewDiv')
+      }
+  })
+  } 

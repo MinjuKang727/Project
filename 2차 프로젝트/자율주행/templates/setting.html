@@ -1,43 +1,96 @@
 {% extends "frm_body.html" %}
 {% block head %}
 {% block src %}
-<script src="../static/jquery.canvasResize.js"></script> 
-<script src="../static/canvasResize.js"></script>     
-<script src="../static/jquery.exif.js"></script>     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./static/jquery.canvasResize.js"></script> 
+<script src="./static/canvasResize.js"></script>     
+<script src="./static/jquery.exif.js"></script> 
 {% endblock %}
 {{ super() }}
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
 <div>
-    <section id="upload_file">
-        <form method = "POST" name="area" action="/set/map/upload_result" enctype="multipart/form-data">
-            <label for="A_NAME" class="form-label mt-4" style="user-select: auto;">공간 이름</label>
-            <input type="text" name="A_NAME" class="form-control" placeholder="공간 이름을 입력해 주세요.">
-            <div class="feedback A_NAME"></div>
-            <label for="file" class="form-label mt-4" style="user-select: auto;">스마트팜 설계도면 사진</label>
-            <input class="form-control" type="file" name="file" style="user-select: auto;">
-            <div class="feedback A_SRC"></div>
+   <div class="setting_section">
+   <section id="set_map">
+      <div>
+         <form method = "POST" class="setting_form" name="area" action="/set/map/upload_result" enctype="multipart/form-data">
+            <div  class="form-group">
+               <label for="A_NAME" class="col-form-label mt-4">공간 이름</label>
+               <input type="text" name="A_NAME" class="form-control" placeholder="공간 이름을 입력해 주세요.">
+               <div class="feedback A_NAME"></div>
+            </div>
+            <div>
+               <label for="file" class="col-form-label mt-4">스마트팜 설계도면 사진</label>
+               <input class="form-control" type="file" name="file">
+               <div class="feedback A_SRC"></div>
+            </div>
             <input type="number" name="angle" value="0" hidden>
             <div style="margin-top:1rem;">
-                <input type="button" onclick="previewIMG();" value="사진 미리보기" class="btn btn-outline-success" style="user-select: auto;">
-                <input type="button" onclick="previewIMG(90);" name="rotation" value="이미지 90도 회전" class="btn btn-outline-success">
-                <input type="button" onclick="uploadIMG();" value="업로드" class="btn btn-outline-primary" style="user-select: auto;">
+               <input type="button" onclick="previewIMG();" value="사진 미리보기" class="btn btn-outline-success" style="user-select: auto;">
+               <input type="button" onclick="previewIMG(90);" name="rotation" value="이미지 90도 회전" class="btn btn-outline-success">
+               <input type="button" onclick="uploadIMG();" value="업로드" class="btn btn-outline-primary" style="user-select: auto;">
             </div>
-        </form>
-        <div id="previewDiv">
-            <img src="" id="output">
-        </div>
-    </section>
-    <section id="fixed_tag">
-
-    </section>
-    <section id="robot">
-
-    </section>
-    <section id="user_tag">
-
-    </section>
+            <div id="previewDiv">
+            </div>
+         </form>
+   </section>
+   {% for i in range(4) %}
+      <section class="bg-dark" id="{{ set_list[i]['id'] }}">
+         <div class="set_list">
+            <h3>{{ set_list[i]['title'] }}</h3>
+            <table class="table table-hover">
+               <thead>
+                     <tr>
+                        {% for set_col in set_list[i]['th'] %}
+                           <th>{{ set_col }}</th>
+                        {% endfor %}
+                        <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+                     </tr>
+               </thead>
+               {% if set_list[i]['td'] is defined %}
+                  {% for set_data in set_list[i]['td'] %}
+                     <tr>
+                        {% for data in set_data %}
+                           <td>{{ data }}</td>
+                        {% endfor %}
+                        <th><button type="button" class="btn btn-primary">수정</button></th>
+                        <th><button type="button" class="btn btn-primary">삭제</button></th>
+                     </tr>
+                  {% endfor %}
+               {% else %}
+                  <tr>
+                     <td colspan="4">등록된 {{ set_list[i]['title'] }} 없음</td>
+                  </tr>
+               {% endif %}
+            </table>
+         </div>
+      </section>
+   {% endfor %}
+   </div>
+   <div class="area_list">
+      <h3>공간 리스트</h3>
+         <table class="table table-hover">
+            <thead>
+                  <tr>
+                     <th>공간 번호</th>
+                     <th>공간 이름</th>
+                  </tr>
+            </thead>
+            {% if set_list is defined %}
+               {% for no, name, src in set_list['area'] %}
+                  <tr href="/set/{{ no }}">
+                     <td>{{ no }}</td>
+                     <td>{{ name }}</td>
+                  </tr>
+               {% endfor %}
+            {% else %}
+               <tr href="/set">
+                  <td colspan="4">등록된 공간 없음</td>
+               </tr>
+            {% endif %}
+         </table>
+   </div>
 </div>
 {% include 'frm_footer.html' ignore missing%}
 {% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./static/bootstrap.bundle.min.js"></script>
+    <script src="./static/test.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./static/jquery.canvasResize.js"></script> 
+    <script src="./static/canvasResize.js"></script>     
+    <script src="./static/jquery.exif.js"></script>        
+    <link rel ="shortcut icon" type="image/x-icon" href="./static/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./static/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="./static/bootstrap.css" >
+    <link rel="stylesheet" type="text/css" href="./static/common.css" >
+    <script>
+    </script>
+</head>
+<body>
+    <div>
+        <form method = "POST" class="setting_form" name="area" action="/set/map/upload_result" enctype="multipart/form-data">
+            <div  class="form-group">
+                <label for="A_NAME" class="col-form-label mt-4">공간 이름</label>
+                <input type="text" name="A_NAME" class="form-control" placeholder="공간 이름을 입력해 주세요.">
+                <div class="feedback A_NAME"></div>
+            </div>
+            <div>
+                <label for="file" class="col-form-label mt-4">스마트팜 설계도면 사진</label>
+                <input class="form-control" type="file" name="file">
+                <div class="feedback A_SRC"></div>
+            </div>
+            <input type="number" name="angle" value="0" hidden>
+            <div style="margin-top:1rem;">
+                <input type="button" onclick="previewIMG();" value="사진 미리보기" class="btn btn-outline-success" style="user-select: auto;">
+                <input type="button" onclick="previewIMG(90);" name="rotation" value="이미지 90도 회전" class="btn btn-outline-success">
+                <input type="button" onclick="uploadIMG();" value="업로드" class="btn btn-outline-primary" style="user-select: auto;">
+            </div>
+            <div id="previewDiv">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -474,6 +474,14 @@ input[name='term']{
     margin-right:0.5em;
 }
 
+/* 관리 및 설정 */
+.setting_form {
+    width: 70%;
+    margin: 3rem auto;
+}
+#previewDiv{
+    margin-top: 1rem;
+}
 
 /* error 페이지 */
 .error_body{background-image: url('./img/error.png');background-size : 100% 100%;background-repeat:no-repeat;padding-top:15rem;}

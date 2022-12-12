@@ -10,7 +10,7 @@
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
-{% if areas is defined %}
+{% if set_list['area'] is defined %}
    {% if a_info is defined %}
       {% set a_no = a_info[0] %}
       {% set a_name = a_info[1] %}
@@ -28,48 +28,21 @@
    </ol>
 </div>
 <div class="content" style="padding:0;">
-   {% if areas is defined %}
-   <h3>{{ a_name }}</h3>
+   {% if set_list['area'] is defined %}
+      <h3>{{ a_name }}</h3>
+   {% endif %}
    <div class="loc_info_wrap">
       <div class="area_map">
+         {% if set_list['area'] is defined %}
             <div class="area_img">
                <img src="../static/upload/{{ a_src }}">
             </div>
-         </div>
-         <div class="area_list">
-            <h3>공간 리스트</h3>
-            <table class="table table-hover">
-               <thead>
-                     <tr>
-                        <th>이름</th>
-                     </tr>
-               </thead>
-               {% for no, name, src in areas %}
-                  <tr>
-                     <td><a href="/home/{{ no }}" console>{{name}}</a></td>
-                  </tr>
-               {% endfor %}
-            </table>
-         </div>
          {% else %}
-      <div class="area_map">
-         <h3 class="center"> 관리 및 설정 페이지에서 공간을 등록해 주십시오. </h3>
-      </div>
-      <div class="area_list">
-         <h3>공간 리스트</h3>
-         <table class="table table-hover">
-               <thead>
-                  <tr>
-                     <th>이름</th>
-                  </tr>
-               </thead>
-                  <tr>
-                     <td>등록된 공간이 없습니다.</td>
-                  </tr>
-         </table>
-      </div>
+            <h3 class="center"> 관리 및 설정 페이지에서 공간을 등록해 주십시오. </h3>
          {% endif %}
+      </div>
    </div>
+   {% include 'sec_area.html' ignore missing%}
 </div> 
 {% endblock %}
 {% block footer%}

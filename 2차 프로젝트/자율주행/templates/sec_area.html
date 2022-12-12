@@ -1,0 +1,32 @@
+{% if set_list['area'] is defined}
+<div class="area_list">
+   <h3>공간 리스트</h3>
+   <table class="table table-hover">
+      <thead>
+            <tr>
+               <th>번호</th>
+               <th>이름</th>
+            </tr>
+      </thead>
+      {% for no, name, src in set_list['area'] %}
+         <tr href="/home/{{ no }}">
+            <td>{{ no }}</td>
+            <td>{{name}}</td>
+         </tr>
+      {% endfor %}
+   </table>
+</div>
+
+<div class="area_list">
+<h3>공간 리스트</h3>
+<table class="table table-hover">
+      <thead>
+         <tr>
+            <th>이름</th>
+         </tr>
+      </thead>
+         <tr>
+            <td>등록된 공간이 없습니다.</td>
+         </tr>
+</table>
+</div>
