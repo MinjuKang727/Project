@@ -4,7 +4,7 @@ html{font-family:sans-serif;width:100%;height:100%;margin:0;padding:0;background
 body{width:100%;height:100%;margin:0;padding:0;}
 ul, ol {list-style:none;}
 a {text-decoration:none; color:white;}
-table, th, td {border-collapse:collapse;}
+table, th, td {border-collapse:collapse; text-decoration: none;}
 /* .pad10 {padding:10px;}
 .mrg10 {margin:10px;}
 .fnt18 {font-size:18px;}
@@ -13,6 +13,28 @@ table, th, td {border-collapse:collapse;}
 .btn-save {background: #A0522D; color:#fff; border:0px; padding:8px 14px; margin-top:10px; }
 .btn-delete {background: #FF0080; color:#fff; border:0px; padding:8px 14px; }
 .blind {width:0; height: 0; overflow:hidden; font-size:0;} */ */
+.pd-1{
+   padding: 1em;
+}
+.h-100{
+    height:100%
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.flex-auto{
+    flex: auto;
+}
+.scroll{
+    overflow-y: scroll;
+}
 .left{text-align: left;}
 .center{text-align: center;padding: 1em;}
 .small{font-size: 10px;}
@@ -73,18 +95,13 @@ a{text-decoration: none;}
 
 /* 위치 정보 */
 .loc_info_wrap{
-    width: 100%;
+    width: 75%;
     height: 100%;
-    display: flex;
-    flex-direction:row;
-    flex-wrap: wrap;
 }
 .area_map{
-    width: 60%;
+    width: 100%;
     min-width: 15rem;
     height: 35rem;
-    flex:auto;
-    flex-grow: 3;
     overflow: scroll;
 }
 
@@ -358,6 +375,7 @@ a{text-decoration: none;}
     margin:1em auto;
 }
 .content{
+    height: fit-content;
     padding: 3em 3em;
     margin: 0 auto;
 }
@@ -475,7 +493,7 @@ input[name='term']{
 }
 
 /* 관리 및 설정 */
-.setting_form {
+.set_Area {
     width: 70%;
     margin: 3rem auto;
 }
