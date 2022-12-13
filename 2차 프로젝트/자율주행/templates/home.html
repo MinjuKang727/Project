@@ -9,8 +9,8 @@
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
-{% if set_list['area'] != [] %}
-   {% if a_info != [] %}
+{% if set_list is defined %}
+   {% if a_info is defined %}
       {% set a_no = a_info[0] %}
       {% set a_name = a_info[1] %}
       {% set a_src = a_info[2] %}
@@ -19,6 +19,10 @@
       {% set a_name = areas[0][1] %}
       {% set a_src = areas[0][2] %}
    {% endif %}
+{% else %}
+   {% set a_no = "" %}
+   {% set a_name = "" %}
+   {% set a_src= "" %}
 {% endif %}
 <div>
    <ol class="breadcrumb page_loc">
@@ -29,11 +33,11 @@
 <div class="content" style="padding:0.5rem;">
    <div class="flex-row">
       <div class="loc_info_wrap flex-auto flex-col">
-      {% if a_info != [] %}
+      {% if a_info is defined %}
          <h3>{{ a_name }}</h3>
       {% endif %}
          <div class="area_map flex-auto">
-            {% if set_list['area'] != [] %}
+            {% if set_list is defined %}
                <img src="../static/upload/{{ a_src }}">
             {% else %}
                <h3 class="center"> 관리 및 설정 페이지에서 공간을 등록해 주십시오. </h3>
@@ -50,7 +54,7 @@
                   </tr>
             </thead>
             <tbody>
-               {% if set_list['area'] != [] %}
+               {% if set_list is defined %}
                   {% for no, name, src in set_list['area'] %}
                      <tr onclick="location.href='/home/{{ no }}'" class="table-active">
                         <td>{{ no }}</td>
@@ -59,7 +63,7 @@
                   {% endfor %}
                {% else %}
                   <tr>
-                     <td colspan="2">등록된 공간이 없습니다.</td>
+                     <td colspan="2" class="center">등록된 공간이 없습니다.</td>
                   </tr>
                {% endif %}
             </tbody>
