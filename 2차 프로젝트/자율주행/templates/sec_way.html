@@ -1,0 +1,53 @@
+<section class="bg-dark" id="set_Way">
+   <div class="set_list">
+       <h3>경로 리스트</h3>
+       <table class="table table-hover">
+         <thead>
+               <tr>
+                  <th>번호</th>
+                  <th>이름</th>
+                  <th>좌표</th>
+                  <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+               </tr>
+         </thead>
+         <tbody>
+            <tr class="Way_form" hidden>
+               <td></td>
+               <td>
+                  <input type="text" name="W_NAME" class="form-control" placeholder="이름을 입력해 주세요.">
+                  <div class="feedback W_NAME"></div>
+               </td>
+               <td>
+                  <input type="text" name="W_LOC" class="form-control" readonly>
+                  <div class="feedback W_LOC"></div>
+               </td>
+               <td>
+                  <button type="button" class="btn btn-primary">경로 그리기</button>
+               </td>
+               <td>
+                  <button type="button" class="btn btn-primary">등록</button>
+               </td>
+            </tr>
+            {% if set_list['way'] != [] %}
+               {% for no, name, way in set_list['way'] %}
+                  <tr>
+                     <td>{{ no }}</td>
+                     <td>{{ name }}</td>
+                     <td>{{ way }}</td>
+                     <td>
+                        <button type="button" class="btn btn-primary">수정</button>
+                     </td>
+                     <td>
+                        <button type="button" class="btn btn-primary">삭제</button>
+                     </td>
+                  </tr>
+               {% endfor %}
+            {% else %}
+               <tr>
+                  <td colspan="5">등록된 경로가 없습니다.</td>
+               </tr>
+            {% endif %}
+         </tbody>
+      </table>
+   </div>
+</section>

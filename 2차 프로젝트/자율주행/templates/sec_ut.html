@@ -1,0 +1,46 @@
+<section class="bg-dark" id="set_UserTag">
+   <div class="set_list">
+       <h3>사용자 태그 (총 {{ set_list['user_tag'] | length }}개)</h3>
+       <table class="table table-hover">
+           <thead>
+               <tr>
+                  <th>번호</th>
+                  <th>아이디</th>
+                  <th>상태</th>
+                  <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+               </tr>
+           </thead>
+           <tbody>
+                <tr class="UserTag_form" hidden>
+                    <td></td>
+                    <td>
+                        <input type="text" name="UT_ID" class="form-control" placeholder="아이디를 입력해 주세요.">
+                        <div class="feedback UT_ID"></div> 
+                    </td>
+                    <td>0</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">스캔</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary">등록</button>
+                    </td>
+                </tr>
+                {% if set_list['user_tag'] != [] %}
+                    {% for td in set_list['user_tag'] %}
+                    <tr>
+                        {% for data in td %}
+                            <td>{{ data }}</td>
+                        {% endfor %}
+                        <td><button type="button" class="btn btn-primary">수정</button></td>
+                        <td><button type="button" class="btn btn-primary">삭제</button></td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="7">등록된 사용자 태그 없음</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+       </table>
+   </div>
+</section>
