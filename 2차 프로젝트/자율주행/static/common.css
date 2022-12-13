@@ -144,40 +144,6 @@ a{text-decoration: none;}
     opacity: 0.5;
 }
 
-/* 게시판 */
-.manager_list{
-    width:80%;
-    margin:3em auto;
-}
-.manager_search{
-    float:right;
-}
-.manager_sort{
-    float:left
-}
-.manager_sort > ul > li > a{
-    padding: 2px;
-}
-.manager_write_btn{
-    float:right;
-}
-.manager_page{
-    clear: both;
-    margin: 2em auto;
-    width: fit-content;
-}
-.manager_paging > ul, li, a{
-    display: inline;
-    float:left
-}
-.manager_content > table{
-    margin: 2em auto;
-    border : solid 1px white;
-}
-.manager_content > table > th, td{
-    text-align: center;
-}
-
 /* 로그인 */
 .login_div{
     height: fit-content;
