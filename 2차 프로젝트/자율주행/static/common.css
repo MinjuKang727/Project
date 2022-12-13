@@ -35,6 +35,9 @@ table, th, td {border-collapse:collapse; text-decoration: none;}
 .scroll{
     overflow-y: scroll;
 }
+.hidden{
+    display:hidden;
+}
 .left{text-align: left;}
 .center{text-align: center;padding: 1em;}
 .small{font-size: 10px;}
@@ -67,7 +70,6 @@ a{text-decoration: none;}
     position: relative; 
     top:3em; 
     width:100%;
-
 }
 
 .home_info_wrap{
@@ -83,15 +85,6 @@ a{text-decoration: none;}
     text-decoration: none;
     color: white;
 }
-
-.background_video{
-  width: 100%;
-  height: 100%;
-  padding:0;
-  margin: 0 auto;
-  flex: auto;
-}
-.icon {width:30px; height:30px;}
 
 /* 위치 정보 */
 .loc_info_wrap{
@@ -151,88 +144,6 @@ a{text-decoration: none;}
     opacity: 0.5;
 }
 
-.intro_member, .set_element {
-    max-width: 100%;
-    width : fit-content;
-    height : 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 5em auto;
-    text-align: center;
-    justify-content: center;
-}
-.member, .element {
-    margin: 0.5em;
-    width: 23em; 
-    height: 100%;
-    display:inline;
-    float: left;
-}
-.element:hover {
-    transform: scale(1.03);
-    cursor:pointer;
-}
-.element_info {
-    width: 80%;
-    height: 100%;
-    margin: 3em auto;
-}
-.kit_info > li {
-    margin-right:2em;
-}
-
-.intro_img{
-    width: 20rem;
-    height: 12rem;
-    margin : 1rem auto;
-    overflow: hidden;
-}
-
-.intro_img > img{
-    max-width: 100%;
-    height: auto;
-    /* width: auto; */
-    /* max-height: 100%; */
-    
-    margin: 0 auto; 
-}
-
-.webcam_btn{
-    float: right;
-    width: 3em;
-    height: 3em;
-    cursor: pointer;
-}
-.webcam_btn:hover {
-    width: 3.5em;
-    height: 3.5em;
-}
-.graph_img{
-    cursor: pointer;
-}
-.graph_img:hover{
-    width: 110%;
-    height: auto;
-}
-.last{
-    height: 4em;
-}
-.map{
-    display:flex;
-    margin: 7% auto;
-    width: 80%;
-}
-
-.circle{
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-}
-
-.hidden{
-    display:hidden;
-}
-
 /* 게시판 */
 .manager_list{
     width:80%;
@@ -267,54 +178,6 @@ a{text-decoration: none;}
     text-align: center;
 }
 
-/* 게시판 글 보기 */
-.employee_info{
-    padding-top: 1em;
-}
-.content_view{
-    width:80%;
-    height: fit-content;
-    min-height: 35em;
-    margin:3em auto;
-}
-.content_table {
-    width:100%;
-    height: fit-content;
-    min-height: 30em;
-    margin-top: 3em;
-    margin: 0 auto;
-    margin: 0.5em;
-    background-color: #fafff1;
-    border: solid 2px #bfbfbf;
-}
-.content_table> th{
-    font-weight:bolder;
-}
-.content_table>th, td{
-    border: solid 2px #bfbfbf;
-}
-.content_row{
-    height:100%;
-    min-height: 30em;
-}
-.content_row>td{
-    padding:2em;
-    text-align: left;
-    vertical-align: top;
-}
-.manager_input{
-    width: 100%;
-    height: 100%;
-}
-.content_textarea{
-    width: 100%;
-    height: 100%;
-    border: none;
-    resize: none;
-}
-.employee_write_btn{
-    float:right;
-}
 /* 로그인 */
 .login_div{
     height: fit-content;
@@ -388,63 +251,10 @@ a{text-decoration: none;}
     flex-direction: row;
 }
 
-.first{        
-    float: left;        
-    width: 3em;
-    height: 3em;
-    /* border-radius: 70%; */
-    overflow: hidden;
-    margin-right:1em;
-    /* flex:auto; */
-}
-.first>img, .third>img{
-    padding: 0.5em;
-    width: fit-content;
-    height: 100%;
-    object-fit: cover;
-}
-
-.second{
-    width: 10rem;
-    min-width: fit-content;
-    text-align: center;
-    float: left;
-    margin-right: 1em;
-    /* flex:auto; */
-    padding-top: 0.5em;
-}
-.third{
-    float: left;            
-    width: 3em;
-    height: 3em;
-    /* border-radius: 70%; */
-    overflow: hidden;
-    /* flex:auto; */
-}
-.left_right_trans{
-    transform: scaleX(-1);
-}
-
 .signup_wrap{
     width: 100%;
 }
 
-.title_info{
-    clear:both;
-    margin: 0 auto;
-    display:flex;
-    flex-direction: column;
-    padding: 1em;
-}
-.title_info h5{
-    text-align:center;
-    flex:auto;
-    margin: 0.5em auto;
-}
-.title_info span{
-    flex:auto;
-    margin: 0 auto;
-}
 .signup_form {
     width: 100%;
     max-width: 25em;
