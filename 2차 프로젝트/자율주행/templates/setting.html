@@ -1,19 +1,29 @@
 {% extends "frm_body.html" %}
 {% block head %}
-{% block src %}
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   <script src="./static/jquery.canvasResize.js"></script> 
-   <script src="./static/canvasResize.js"></script>     
-   <script src="./static/jquery.exif.js"></script> 
-{% endblock %}
 {{ super() }}
+{% block src %}
+   <script>
+      window.onload = function() {
+         let url = window.location.href;
+         if(url.endsWith('new')){
+            $('.show').css('display', 'none');
+            $('.edit').css('display', 'block');
+            $('input[name=rotation').css('display', 'none');
+         }
+      }
+   </script>
+{% endblock %}
 {% endblock %}
 {% block wrap %}
 {% include 'frm_header.html' ignore missing%}
 <div>
    <div>
       <ol class="breadcrumb">
-          <li class="breadcrumb-item white"><a href="/set">관리 및 설정</a></li>
+          <li class="breadcrumb-item white"><a href="#set_Area">공간</a></li>
+          <li class="breadcrumb-item white"><a href="#set_FixedTag">고정형 태그</a></li>
+          <li class="breadcrumb-item white"><a href="#set_Robot">로봇</a></li>
+          <li class="breadcrumb-item white"><a href="#set_UserTag">사용자 태그</a></li>
+          <li class="breadcrumb-item white"><a href="#set_Way">경로</a></li>
       </ol>
    </div>
    <div class="setting_section">
@@ -24,4 +34,5 @@
       {% include 'sec_way.html' ignore missing%}
    </div>
 </div>
+
 {% endblock %}

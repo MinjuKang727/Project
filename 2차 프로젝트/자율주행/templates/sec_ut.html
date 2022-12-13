@@ -1,4 +1,4 @@
-<section class="bg-dark" id="set_UserTag">
+<div class="bg-dark pd_top_1" id="set_UserTag">
    <div class="set_list">
        <h3>사용자 태그 (총 {{ set_list['user_tag'] | length }}개)</h3>
        <table class="table table-hover">
@@ -7,7 +7,7 @@
                   <th>번호</th>
                   <th>아이디</th>
                   <th>상태</th>
-                  <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+                  <th colspan="2"><button type="button" class="btn btn-primary" onclick="addData();">추가</button></th>
                </tr>
            </thead>
            <tbody>
@@ -19,10 +19,10 @@
                     </td>
                     <td>0</td>
                     <td>
-                        <button type="button" class="btn btn-primary">스캔</button>
+                        <button type="button" class="btn btn-primary" onclick="scanUserTag();">스캔</button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary">등록</button>
+                        <button type="button" class="btn btn-primary" onclick="submitData('USER_TAG');">등록</button>
                     </td>
                 </tr>
                 {% if set_list['user_tag'] != [] %}
@@ -31,8 +31,8 @@
                         {% for data in td %}
                             <td>{{ data }}</td>
                         {% endfor %}
-                        <td><button type="button" class="btn btn-primary">수정</button></td>
-                        <td><button type="button" class="btn btn-primary">삭제</button></td>
+                        <td><button type="button" class="btn btn-primary" onclick="editData('USER_TAG', {{ no }});">수정</button></td>
+                        <td><button type="button" class="btn btn-primary" onclick="deleteData('USER_TAG', {{ no }});">삭제</button></td>
                     </tr>
                     {% endfor %}
                 {% else %}
@@ -43,4 +43,4 @@
             </tbody>
        </table>
    </div>
-</section>
+</div>

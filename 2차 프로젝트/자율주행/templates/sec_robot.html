@@ -1,4 +1,4 @@
-<section class="bg-dark" id="set_Robot">
+<div class="bg-dark pd_top_1" id="set_Robot">
     <div class="set_list">
         <h3>로봇 설정(총 {{ set_list['robot'] | length }}개)</h3>
         <table class="table table-hover">
@@ -14,14 +14,14 @@
                     <th>앵커3 ID</th>
                     <th>추종 태그</th>
                     <th>이동 좌표</th>
-                    <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+                    <th colspan="2"><button type="button" class="btn btn-primary" onclick="addData();">추가</button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="Robot_form" hidden>
                     <td></td>
                     <td>
-                        <input type="text" name="R_MODEL" class="form-control" placeholder="아이디를 입력해 주세요.">
+                        <input type="text" name="R_MODEL" class="form-control" placeholder="모델명을 입력해 주세요.">
                         <div class="feedback R_MODEL"></div>
                     </td>
                     <td>대기</td>
@@ -37,10 +37,10 @@
                         <input type="text" name="R_ANCHOR3_ID" class="form-control" readonly>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary">스캔</button>
+                        <button type="button" class="btn btn-primary"  onclick="scanRobot();">스캔</button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary">등록</button>
+                        <button type="button" class="btn btn-primary" onclick="submitData('ROBOT');">등록</button>
                     </td>
                 </tr>
                 {% if set_list['robot'] != [] %}
@@ -49,8 +49,12 @@
                         {% for data in td %}
                             <td>{{ data }}</td>
                         {% endfor %}
-                        <td><button type="button" class="btn btn-primary">수정</button></td>
-                        <td><button type="button" class="btn btn-primary">삭제</button></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="editData('ROBOT', {{ no }});">수정</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="deleteData('ROBOT', {{ no }});">삭제</button>
+                        </td>
                     </tr>
                     {% endfor %}
                 {% else %}
@@ -61,4 +65,4 @@
             </tbody>
         </table>
     </div>
-</section>
+</div>

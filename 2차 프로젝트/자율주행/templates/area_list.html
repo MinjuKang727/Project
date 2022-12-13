@@ -1,34 +1,35 @@
-<div class="AreasInSet flex-auto">
-   <h3>공간 리스트</h3>
-   <table class="table table-hover">
+{% if a_info is defined %}
+<div class="flex-auto" style="width:35%">
+{% else %}
+<div class="flex-auto">
+{% endif %}
+   <h3>공간 리스트 (총 {{ set_list['area'] | length }}개) &nbsp;&nbsp;
+      <button type="button" class="btn btn-primary" onclick="addData('AREA');">추가</button>
+   </h3>
+   <div class="AreasInSet">
+   <table class="table table-hover areaTable">
       <thead>
             <tr>
                <th>번호</th>
                <th>이름</th>
                <th>설계도면 파일</th>
-               <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
             </tr>
       </thead>
       <tbody>
          {% if set_list['area'] != [] %}
-            {% for no, name, src in set_list['area'] %}
-               <tr onclick="location.href='/set/{{ no }}'" class="table-active">
-                  <td>{{ no }}</td>
-                  <td>{{ name }}</td>
-                  <td>{{ src }}</td>
-                  <td>
-                     <button type="button" class="btn btn-primary">수정</button>
-                  </td>
-                  <td>
-                     <button type="button" class="btn btn-primary">삭제</button>
-                  </td>
+            {% for data in set_list['area'] %}
+               <tr onclick="location.href='/set/{{ data[0] }}'" class="table-active">
+                  <td>{{ data[0] }}</td>
+                  <td>{{ data[1] }}</td>
+                  <td>{{ data[2] }}</td>
                </tr>
             {% endfor %}
          {% else %}
             <tr>
-               <td colspan="5">등록된 공간이 없습니다.</td>
+               <td colspan="3">등록된 공간이 없습니다.</td>
             </tr>
          {% endif %}
       </tbody>
    </table>
+   </div>
 </div>

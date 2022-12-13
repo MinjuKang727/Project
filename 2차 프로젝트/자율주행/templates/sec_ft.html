@@ -1,4 +1,4 @@
-<section class="bg-dark" id="set_FixedTag">
+<div class="bg-dark pd_top_1" id="set_FixedTag">
     <div class="set_list">
         <h3>고정형 태그 (총 {{ set_list['fixed_tag'] | length }}개)</h3>
         <table class="table table-hover">
@@ -9,7 +9,7 @@
                     <th>상태</th>
                     <th>설치 좌표1</th>
                     <th>설치 좌표2</th>
-                    <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+                    <th colspan="2"><button type="button" class="btn btn-primary" onclick="addData();">추가</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +26,11 @@
                     <td>
                         <input type="text" name="FT_Y" class="form-control" readonly>
                     </td>
-                    <td colspan="2">
-                        <button type="button" class="btn btn-primary">등록</button>
+                    <td>
+                        <button type="button" class="btn btn-primary" onclick="markFixedTag();">좌표 기록</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" onclick="submitData('FIXED_TAG');">등록</button>
                     </td>
                 </tr>
                 {% if set_list['fixed_tag'] != [] %}
@@ -36,8 +39,8 @@
                         {% for data in td %}
                             <td>{{ data }}</td>
                         {% endfor %}
-                        <td><button type="button" class="btn btn-primary">수정</button></td>
-                        <td><button type="button" class="btn btn-primary">삭제</button></td>
+                        <td><button type="button" class="btn btn-primary" onclick="editData('FIXED_TAG', {{ no }});">수정</button></td>
+                        <td><button type="button" class="btn btn-primary" onclick="deleteData('FIXED_TAG', {{ no }});">삭제</button></td>
                     </tr>
                     {% endfor %}
                 {% else %}
@@ -48,4 +51,4 @@
             </tbody>
         </table>
     </div>
-</section>
+</div>

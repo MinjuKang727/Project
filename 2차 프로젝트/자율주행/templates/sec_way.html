@@ -1,4 +1,4 @@
-<section class="bg-dark" id="set_Way">
+<div class="bg-dark pd_top_1" id="set_Way">
    <div class="set_list">
        <h3>경로 리스트</h3>
        <table class="table table-hover">
@@ -7,7 +7,7 @@
                   <th>번호</th>
                   <th>이름</th>
                   <th>좌표</th>
-                  <th colspan="2"><button type="button" class="btn btn-primary">추가</button></th>
+                  <th colspan="2"><button type="button" class="btn btn-primary" onclick="addData();">추가</button></th>
                </tr>
          </thead>
          <tbody>
@@ -22,10 +22,10 @@
                   <div class="feedback W_LOC"></div>
                </td>
                <td>
-                  <button type="button" class="btn btn-primary">경로 그리기</button>
+                  <button type="button" class="btn btn-primary" onclick="drawWay();">경로 그리기</button>
                </td>
                <td>
-                  <button type="button" class="btn btn-primary">등록</button>
+                  <button type="button" class="btn btn-primary" onclick="submitData('WAY');">등록</button>
                </td>
             </tr>
             {% if set_list['way'] != [] %}
@@ -35,10 +35,10 @@
                      <td>{{ name }}</td>
                      <td>{{ way }}</td>
                      <td>
-                        <button type="button" class="btn btn-primary">수정</button>
+                        <button type="button" class="btn btn-primary" onclick="editWay('WAY', {{ no }});">수정</button>
                      </td>
                      <td>
-                        <button type="button" class="btn btn-primary">삭제</button>
+                        <button type="button" class="btn btn-primary" onclick="deleteData('WAY', {{ no }});">삭제</button>
                      </td>
                   </tr>
                {% endfor %}
@@ -50,4 +50,4 @@
          </tbody>
       </table>
    </div>
-</section>
+</div>

@@ -1,38 +1,41 @@
-<section class="set_Area bg-dark">
-   <div class="flex-row">
-      <form method = "POST" name="area" class="flex-auto area_form" action="/set/map/upload_result" enctype="multipart/form-data">
-         <table class="setArea">
-            <thead>
-               <tr>
-                  <th>이름</th>
-                  <th>설계도면 사진</th>
-                  <th colspan="2"></th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td class="pd-1">
-                     <input type="text" name="A_NAME" class="form-control " placeholder="공간 이름을 입력해 주세요.">
-                     <div class="feedback A_NAME"></div>
-                  </td>
-                  <td class="pd-1">
-                     <input class="form-control" type="file" name="file">
-                     <div class="feedback A_SRC"></div>
-                  </td>
-                  <td class="pd-1">
-                     <input type="button" onclick="previewIMG();" value="사진 미리보기" class="btn btn-success" style="user-select: auto;">
-                  </td>
-                  <td class="pd-1">
-                     <input type="button" onclick="uploadIMG();" value="업로드" class="btn btn-primary" style="user-select: auto;">
-                  </td>
-               </tr>
-               <tr colspan="3" id="previewDiv pd-1">
-                  <input type="number" name="angle" value="0" hidden>
-                  <input type="button" onclick="previewIMG(90);" name="rotation" value="이미지 90도 회전" class="btn btn-success" hidden>
-               </tr>
-            </tbody>
-         </table>
-      </form>
-   {% include 'area_list.html' ignore missing%}
+<div class="bg-dark pd_top_1" id="set_Area">
+   <div class="flex-row areaDiv">
+      {% if (a_info is defined) and (a_info != [])%}
+         <div class="flex-auto area_form show">
+            <div class="editBtn">
+               <h5><span class="a_noSpan">{{ a_info[0] }}</span>. <span class="a_nameSpan">{{ a_info[1] }}</span></h5>
+               <button type="button" class="btn btn-primary" onclick="editData('AREA', {{ no }});">수정</button>
+               <button type="button" class="btn btn-primary" onclick="deleteData('AREA', {{ no }});">삭제</button>
+            </div>
+            <div class="A_IMG">
+               <img style="width:100%;" src="../static/upload/{{ a_info[2] }}">
+            </div>
+         </div>
+      {% endif %}
+         <form method = "POST" name="area" class="flex-auto area_form edit" action="/set/new/upload_result" enctype="multipart/form-data">
+            <div class="form-group" id="A_NAME">
+               <label class="col-form-label col-form-label-lg mt-4">공간 이름</label>
+               <input type="text" class="form-control" name="A_NAME" autocomplete="off">
+               <div class="feedback A_NAME"></div>
+            </div>
+            <div class="form-group" id="file">
+               <label class="col-form-label col-form-label-lg mt-4">설계도면 사진</label>
+               <input type="file" class="form-control" name="file" autocomplete="off">
+               <div class="feedback A_SRC"></div>
+            </div>
+            <div class="btnDiv">
+               <input type="button" onclick="previewIMG();" value="사진 미리보기" class="btn btn-success" style="user-select: auto;">
+               <input type="number" name="angle" value="0" hidden>
+               <input type="button" onclick="previewIMG(90);" name="rotation" value="사진 90도 회전" class="btn btn-success" >
+               {% if a_info == [] %}
+                  <input type="button" onclick="uploadIMG();" value="등록" class="btn btn-primary" style="user-select: auto;">
+               {% else %}
+                  <input type="button" onclick="editIMG();" value="수정" class="btn btn-primary" style="user-select: auto;">
+               {% endif %}
+            </div>
+            <div id="previewDiv">
+            </div>
+         </form>
+      {% include 'area_list.html' ignore missing %}
    </div>
-</section>
+</div>
