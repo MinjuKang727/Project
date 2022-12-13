@@ -251,23 +251,23 @@ function checkSignupForm (){  //회원가입 form 확인
 /* 관리 및 설정 */
 let fname = "";
 
+let validCSS = {
+  'height' : '30px',
+  'color' : 'green',
+  'font-size' : '15px'
+};
+
+let invalidCSS = {
+  'height' : '30px',
+  'color' : 'red',
+  'font-size' : '15px'
+};
+
 function uploadIMG(){
   let formData = new FormData();
   formData.append('A_NAME', $('input[name=A_NAME]').val());
   formData.append('file', $('input[name=file]')[0].files[0]);
   formData.append('angle', $('input[name=angle]').val());
-
-  let validCSS = {
-    'height' : '30px',
-    'color' : 'green',
-    'font-size' : '15px'
-  }
-
-  let invalidCSS = {
-    'height' : '30px',
-    'color' : 'red',
-    'font-size' : '15px'
-  }
 
 // input 입력 값 체크
   let check = true;
@@ -283,6 +283,7 @@ function uploadIMG(){
     $('#previewDiv').empty();
     $('.A_SRC.feedback').css(invalidCSS);
     $('.A_SRC.feedback').text('설계도면 이미지 파일을 선택해 주십시오.');
+    $('input[name=rotation]').css('display', 'none');
     check = false;
   }else{
     $('#previewDiv').empty();
@@ -292,7 +293,7 @@ function uploadIMG(){
 // ajax 통신
   if (check){
     $.ajax({
-    url : "/set/map/upload_result", 
+    url : "/set/new/upload_result", 
     type : 'POST', 
     data : formData, 
     contentType: false,
@@ -302,6 +303,8 @@ function uploadIMG(){
       $('.A_SRC.feedback').css(validCSS);
       $('.A_SRC.feedback').text(result["message"]);
       $('#previewDiv').empty();
+      window.close();
+      window.open(`/set/${result['a_no']}`);
     }else{
       $('.A_SRC.feedback').css(invalidCSS);
       $('.A_SRC.feedback').text(result["message"]);
@@ -313,18 +316,23 @@ function uploadIMG(){
 // 이미지 미리보기 기능
 function previewIMG(rotation){
   let file = $('input[name=file]')[0].files[0];
-  if (fname != file){
-    fname = file;
-    $('input[name=angle]').val("0");
+  if (file == undefined){
+  }else{
+    $('input[name=rotation]').css('display', 'inline');
+    if (fname != file){
+      fname = file;
+      $('input[name=angle]').val("0");
+    }
+    let angle = Number($('input[name=angle]').val());
+    
+    if (rotation == 90){
+      angle = (angle + rotation) % 360;
+      $('input[name=angle]').val(angle);
+    }
+    $('#previewDiv').empty();
+
+    resizeIMG(file, angle);
   }
-  let angle = Number($('input[name=angle]').val());
-  
-  if (rotation == 90){
-    angle = (angle + rotation) % 360;
-    $('input[name=angle]').val(angle);
-  }
-  $('#previewDiv').empty();
-  resizeIMG(file, angle);
 }
 
 // 이미지 크기 조정
@@ -336,8 +344,93 @@ function resizeIMG(file, angle){
       quality: 100,
       rotate: angle,
       callback: function(data, width, height) {
-        let img = `<img src="${data}">`
+        let img = `<img style="max-width:100%;" src="${data}">`
         $(img).appendTo('#previewDiv')
       }
   })
   } 
+
+function editIMG(){
+  let a_no = $('.a_noSpan').text();
+  if ($('input[name=A_NAME]').val() == ""){
+    $('.A_NAME.feedback').css(invalidCSS);
+    $('.A_NAME.feedback').text('공간 이름을 입력해 주십시오.');
+    check = false;
+  }else{
+    $('.A_NAME.feedback').css('height', "0");
+    $('.A_NAME.feedback').text("");
+  } 
+  if ($('input[name=file]').val() == ""){
+    $('#previewDiv').empty();
+    swal({
+      title: '설계도면 미등록',
+      text: '설계도면은 기존 등록된 사진을 그대로 사용하시겠습니까?',
+      buttons: {
+        cancel: "취소",
+        ok: "확인"
+      },
+      }).then((result)=>{
+        switch(result){
+          case "ok" :
+          case "cancel" :
+            check=false;
+          default:
+            check=false;
+        }
+      })
+  }else{
+    $('#previewDiv').empty();
+    $('.A_SRC.feedback').css('height', "0");
+    $('.A_SRC.feedback').text("");
+  }
+  if (check){
+    let formData = new FormData();
+    formData.append('A_NAME', $('input[name=A_NAME]').val());
+    formData.append('file', $('input[name=file]')[0].files[0]);
+    formData.append('angle', $('input[name=angle]').val());
+    
+    $.ajax({
+    url : `/set/${a_no}/edit_result`, 
+    type : 'POST', 
+    data : formData, 
+    contentType: false,
+    processData: false
+    }).done((result)=>{
+    if (result["result"]){
+      $('.show').css('display', 'block');
+      $('.edit').css('display', 'none');
+      $('#previewDiv').empty();
+      swal("공간 수정 성공", "공간이 업데이트 되었습니다.", "success").then(()=>{
+        window.close();
+        window.open(`/set/${a_no}`)
+      })
+    }else{
+      $('.A_SRC.feedback').css(invalidCSS);
+      $('.A_SRC.feedback').text(result["message"]);
+    }
+  });
+  }
+  
+}
+
+function addData(gubun) {
+  if (gubun == 'AREA'){
+    location.href='/set/new';
+  }
+}
+
+function editData(gubun, no) {
+  if (gubun == 'AREA'){
+    $('.show').css('display', 'none');
+    $('.edit').css('display', 'block');
+    let a_name = $('.a_nameSpan').text();
+    let file = $('.A_IMG > img').attr('src');
+    $('input[name=A_NAME]').val(a_name);
+    let img = `<img style="max-width:100%;" src="${file}">`;
+    $(img).appendTo('#previewDiv');
+  }
+}
+
+function deleteData(gubun, no) {
+  
+}

@@ -1817,6 +1817,10 @@ progress {
   color: var(--bs-table-active-color);
 }
 
+.table-active:hover{
+  cursor: pointer;
+}
+
 .table-hover > tbody > tr:hover > * {
   --bs-table-accent-bg: var(--bs-table-hover-bg);
   color: var(--bs-table-hover-color);
@@ -3795,6 +3799,7 @@ textarea.form-control-lg {
   --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
   position: relative;
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
