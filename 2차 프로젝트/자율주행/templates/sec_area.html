@@ -30,7 +30,7 @@
                {% if a_info == [] %}
                   <input type="button" onclick="uploadIMG();" value="등록" class="btn btn-primary" style="user-select: auto;">
                {% else %}
-                  <input type="button" onclick="editIMG();" value="수정" class="btn btn-primary" style="user-select: auto;">
+                  <input type="button" onclick="editIMG({{a_info[0]}});" value="수정" class="btn btn-primary" style="user-select: auto;">
                {% endif %}
             </div>
             <div id="previewDiv">
