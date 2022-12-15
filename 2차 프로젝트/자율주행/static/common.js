@@ -416,6 +416,48 @@ function editIMG(){
 function addData(gubun) {
   if (gubun == 'AREA'){
     location.href='/set/new';
+  }else if (gubun == 'FIXED_TAG'){
+    $('.FixedTag_form').css('display', 'block');
+    $('#set_FixedTag > table > thead > tr > th: last-child').text('취소');
+    $('#set_FixedTag > table > thead > tr > th: last-child').attr('onclick', "closeADD('AREA');");
+
+  }else if (gubun == 'ROBOT'){
+    $('.Robot_form').css('display', 'block');
+    $('#set_Robot > table > thead > tr > th: last-child').text('취소');
+    $('#set_Robot > table > thead > tr > th: last-child').attr('onclick', "closeADD('ROBOT');");
+
+  }else if (gubun == 'USER_TAG'){
+    $('.UserTag_form').css('display', 'block');
+    $('#set_UserTag > table > thead > tr > th: last-child').text('취소');
+    $('#set_UserTag > table > thead > tr > th: last-child').attr('onclick', "closeADD('USER_TAG');");
+
+  }else if (gubun == 'WAY'){
+    $('.Way_form').css('display', 'block');
+    $('#set_Way > table > thead > tr > th: last-child').text('취소');
+    $('#set_Way > table > thead > tr > th: last-child').attr('onclick', "closeADD('WAY');");
+  }
+}
+
+function closeADD(gubun){
+  if (gubun == 'FIXED_TAG'){
+    $('.FixedTag_form').css('display', 'none');
+    $('#set_FixedTag > table > thead > tr > th: last-child').text('추가');
+    $('#set_FixedTag > table > thead > tr > th: last-child').attr('onclick', "addData('AREA');");
+
+  }else if (gubun == 'ROBOT'){
+    $('.Robot_form').css('display', 'block');
+    $('#set_Robot > table > thead > tr > th: last-child').text('추가');
+    $('#set_Robot > table > thead > tr > th: last-child').attr('onclick', "addData('ROBOT');");
+
+  }else if (gubun == 'USER_TAG'){
+    $('.UserTag_form').css('display', 'block');
+    $('#set_UserTag > table > thead > tr > th: last-child').text('추가');
+    $('#set_UserTag > table > thead > tr > th: last-child').attr('onclick', "addData('USER_TAG');");
+
+  }else if (gubun == 'WAY'){
+    $('.Way_form').css('display', 'block');
+    $('#set_Way > table > thead > tr > th: last-child').text('추가');
+    $('#set_Way > table > thead > tr > th: last-child').attr('onclick', "addData('WAY');");
   }
 }
 

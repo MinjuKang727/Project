@@ -319,12 +319,16 @@ input[name='term']{
 }
 
 .btnDiv{
-    padding: 1rem;
     display: inline;
 }
+
 .btnDiv > input{
-    margin: 0.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
 }
+
+
 /* error 페이지 */
 .error_body{background-image: url('./img/error.png');background-size : 100% 100%;background-repeat:no-repeat;padding-top:15rem;}
 .error_div{height:fit-content;width:fit-content;padding:3rem;margin:auto;background-color:white;text-align:center;opacity:0.8;border-radius:0.1rem;}
